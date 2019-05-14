@@ -3,6 +3,8 @@
 **Horizon 2020**
 **H2020-EO-2014 New ideas for Earth-relevant Space Applications**
 
+![EUSTACE Logo](/images/eustace.jpg)
+
 The EUSTACE project produced: 
 
 * Surface air temperature estimates (with estimates of uncertainty) for all surfaces of Earth, derived from satellite surface skin temperature retrievals 
