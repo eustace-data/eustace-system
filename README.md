@@ -17,3 +17,5 @@ The code has been archived here to facilitate accessibility, however the system 
 The data products are available via the [CEDA archive](https://catalogue.ceda.ac.uk/uuid/a52b2cc065a847b8a77a93896880349f)
 
 This repo is archived and static - we are not able to reply to comments, suggestions for improvements, bug fixes or pull requests. 
+
+EUSTACE has received funding from the European Union's Horizon 2020 Programme for Research and Innovation, under Grant Agreement no. 640171
