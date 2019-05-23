@@ -12,7 +12,7 @@ The EUSTACE project produced:
 
 This repo contains the research code used to produce these data products.
 
-The code has been archived here to facilitate accessibility, however the system has a dependency to run from an SVN repository and requires access to the JASMIN CEMS academic computing system, as outlined in the documention.
+The code has been archived here to facilitate accessibility, however the system has a dependency to run from an SVN repository and requires access to the JASMIN CEMS academic computing system, as outlined in the documentation.
 
 The data products are available via the [CEDA archive](https://catalogue.ceda.ac.uk/uuid/a52b2cc065a847b8a77a93896880349f)
 
