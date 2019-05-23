@@ -19,3 +19,5 @@ The data products are available via the [CEDA archive](https://catalogue.ceda.ac
 This repo is archived and static - we are not able to reply to comments, suggestions for improvements, bug fixes or pull requests. 
 
 EUSTACE has received funding from the European Union's Horizon 2020 Programme for Research and Innovation, under Grant Agreement no. 640171
+
+![EC Logo](/images/logo-ce-horizontal-en-quadri-hr.jpg)
