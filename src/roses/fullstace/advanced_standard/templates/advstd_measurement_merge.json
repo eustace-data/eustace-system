@@ -1,0 +1,57 @@
+{
+    "python_class" : "eumopps.catalogue.catalogue.Catalogue",
+
+    "operations" : [
+
+
+    {
+    "python_class" : "eumopps.catalogue.operation.Operation",
+    "name" : "climatology_merge",
+    "runmodule" : 
+    {
+            "python_function" : "eustace.analysis.advanced_standard.examples.example_eustace.measurement_merge",
+        "storage_climatology" :
+        {
+            "python_class" : "eustace.analysis.advanced_standard.components.storage_files.SpaceTimeComponentSolutionStorage_Files",
+            "measurementfilelist_read" : { "python_class" : "eumopps.catalogue.placeholder.InputFileList", "datasetname" : "measurement_climatology" }
+            },
+        "storage_large_scale" :
+        {
+        "python_class" : "eustace.analysis.advanced_standard.components.storage_files.SpaceTimeComponentSolutionStorage_Files"
+        },
+        "storage_local" :
+        {
+            "python_class" : "eustace.analysis.advanced_standard.components.storage_files.SpatialComponentSolutionStorage_Files"
+        },
+        "component_index" : 0,
+        "covariates_descriptor" : "/gws/nopw/j04/eustace/data/internal/climatology_covariates/covariates.json",
+        "insitu_biases": 1 ,
+        "breakpoints_file":"/gws/nopw/j04/eustace/data/internal/D1.7/daily/eustace_stations_global_R001127_daily_status.nc",
+        "global_biases": 1 ,
+        "global_biases_group_list":["surfaceairmodel_ice_global", "surfaceairmodel_land_global", "surfaceairmodel_ocean_global"],
+        "compute_uncertainties": 0,
+        "method":"APPROXIMATED",
+        "output_file": { "python_class" : "eumopps.catalogue.placeholder.OutputFile", "datasetname" : "measurement_climatology_merged"}
+    },
+    "step" : { "python_class" : "eustace.analysis.advanced_standard.examples.step.StepAnnual", "start" : "20060101000000", "end" : "20101231000000" },
+    "newdatasets": [
+        {
+        "python_class" : "eumopps.catalogue.dataset.CatalogueDataSet",
+        "name"  : "measurement_climatology_merged",
+        "subsets" : [
+                {
+                    "python_class" : "eumopps.catalogue.dataset.CatalogueDataSubset",
+                    "layout" : 
+                    {
+                        "python_class" : "eumopps.catalogue.storage.DataStorageFiles",
+                        "patterns" : [ "measurement_climatology/%Y/", "measurement_climatology_%Y.pickle" ]
+                    }
+                }
+            ]
+        }
+    ]
+    }
+    
+    ]
+    
+}

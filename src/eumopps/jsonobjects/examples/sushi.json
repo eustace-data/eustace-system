@@ -1,0 +1,10 @@
+{
+  "python_class": "example_json_config.FineDining",
+  "food": "norimaki",
+  "drink": "saki",
+  "cutlery": {
+    "python_class": "example_json_config.Cutlery",
+    "names": [ "knife", "fork" ],
+    "comment": "Chopsticks would have been easier." 
+  }
+}

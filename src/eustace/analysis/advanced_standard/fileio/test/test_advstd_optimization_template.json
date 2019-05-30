@@ -1,0 +1,49 @@
+{ 
+  "python_class": "eumopps.catalogue.catalogue.Catalogue",
+
+  "operations": [
+    {
+      "python_class": "eumopps.catalogue.operation.Operation",
+
+      "step": {
+        "python_class": "eustace.analysis.advanced_standard.fileio.step.RegionStep",
+        "full_level":3,
+        "subdivision_level":0
+      },
+      "newdatasets": [
+        {
+          "python_class": "eumopps.catalogue.dataset.CatalogueDataSet",
+          "name": "myresults",
+          "subsets" : [ 
+            {
+              "python_class": "eumopps.catalogue.dataset.CatalogueDataSubset",
+          "layout":
+          {
+            "python_class": "eumopps.catalogue.storage.DataStorageFiles",
+            "patterns":["regional_hyperparameters.{full}.{sub}.{index}.npy" ]
+          }
+            }
+          ]
+        }
+      ],
+
+      "runmodule": {
+
+        "python_function": "eumopps.catalogue.test.examplemodule.run_region",
+
+    "title": "My Results",
+
+    "measurementfilelist_read" : { "python_class" : "eumopps.catalogue.placeholder.InputFileList", "datasetname" : "dailydata" },
+
+    "region_index": {
+      "python_class": "eumopps.catalogue.placeholder.StepIndex"
+      },
+
+        "output": { 
+          "python_class": "eumopps.catalogue.placeholder.OutputFile",
+          "datasetname": "myresults"
+        }
+      }
+    } 
+  ]
+}

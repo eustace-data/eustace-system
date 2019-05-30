@@ -1,0 +1,218 @@
+{ 
+  "python_class": "eumopps.catalogue.catalogue.Catalogue",
+
+  "operations": [
+        {
+        "python_class": "eumopps.catalogue.operation.Operation",
+        "name": "input_lists_create",
+        "step": {
+            "python_class": "eumopps.catalogue.step.StepDaily",
+            "start": "20000101000000",
+            "end": "20041231000000"
+        },
+
+        "newdatasets": [
+            {
+            "python_class": "eumopps.catalogue.dataset.CatalogueDataSet",
+            "name": "input_lists",
+            "subsets" : [ 
+                {
+                "python_class": "eumopps.catalogue.dataset.CatalogueDataSubset",
+            "layout":
+            {
+                "python_class": "eumopps.catalogue.storage.DataStorageFiles",
+                "patterns": [ "local_hyperparameters/", "optimization_%Y%m%d_inputdump.json" ]
+            }
+                }
+            ]
+            }
+        ],
+
+        "runmodule": {
+        "python_function": "eustace.analysis.advanced_standard.fileio.optimization_inputs.input_list_time",
+        "time": {
+        "python_class": "eumopps.catalogue.placeholder.StepTime"
+            },
+
+        "inputsources":[
+            {
+                "fixed_location_lookup_filename":{
+                    "python_class":"eumopps.catalogue.placeholder.InputFile",
+                    "datasetname":"locationlookup_insitu_land"
+                },
+                "local_correlation_ranges_filenames":{
+                    "Tmin":{
+                        "python_class":"eumopps.catalogue.placeholder.InputFile",
+                        "datasetname":"rawbinary_insitu_land_Tmin_correlationranges"
+                    },
+                    "Tmax":{
+                        "python_class":"eumopps.catalogue.placeholder.InputFile",
+                        "datasetname":"rawbinary_insitu_land_Tmax_correlationranges"
+                    }
+                },
+                "observable_filenames":{
+                    "Tmin":{
+                        "python_class":"eumopps.catalogue.placeholder.InputFile",
+                        "datasetname":"rawbinary_insitu_land_Tmin",
+                        "missing_data":"allowed"
+                    },
+                    "Tmax":{
+                        "python_class":"eumopps.catalogue.placeholder.InputFile",
+                        "datasetname":"rawbinary_insitu_land_Tmax",
+                        "missing_data":"allowed"
+                    }
+                }
+            },
+            {
+                "local_correlation_ranges_filenames":{
+                    "Tmean":{
+                        "python_class":"eumopps.catalogue.placeholder.InputFile",
+                        "datasetname":"rawbinary_insitu_ocean_Tmean_correlationranges"
+                    }
+                },
+                "observable_filenames":{
+                    "Tmean":{
+                        "python_class":"eumopps.catalogue.placeholder.InputFile",
+                        "datasetname":"rawbinary_insitu_ocean_Tmean",
+                        "subsetindex":0,
+                        "missing_data":"allowed"
+                    }
+                },
+                "mobile_location_lookup_filenames":{
+                    "Tmean":{
+                        "python_class":"eumopps.catalogue.placeholder.InputFile",
+                        "datasetname":"rawbinary_insitu_ocean_Tmean",
+                        "subsetindex":1,
+                        "missing_data":"allowed"
+                    }
+                }
+            },
+            {
+                "fixed_location_lookup_filename":{
+                    "python_class":"eumopps.catalogue.placeholder.InputFile",
+                    "datasetname":"locationlookup_satellite"
+                },
+                "local_correlation_ranges_filenames":{
+                    "Tmin":{
+                        "python_class":"eumopps.catalogue.placeholder.InputFile",
+                        "datasetname":"rawbinary_surfaceairmodel_land_Tmin_correlationranges"
+                    },
+                    "Tmax":{
+                        "python_class":"eumopps.catalogue.placeholder.InputFile",
+                        "datasetname":"rawbinary_surfaceairmodel_land_Tmax_correlationranges"
+                    }
+                },
+                "observable_filenames":{
+                    "Tmin":{
+                        "python_class":"eumopps.catalogue.placeholder.InputFile",
+                        "datasetname":"rawbinary_surfaceairmodel_land_Tmin",
+                        "missing_data":"allowed"
+                    },
+                    "Tmax":{
+                        "python_class":"eumopps.catalogue.placeholder.InputFile",
+                        "datasetname":"rawbinary_surfaceairmodel_land_Tmax",
+                        "missing_data":"allowed"
+                    }
+                }
+            },
+            {
+                "fixed_location_lookup_filename":{
+                    "python_class":"eumopps.catalogue.placeholder.InputFile",
+                    "datasetname":"locationlookup_satellite"
+                },
+                "local_correlation_ranges_filenames":{
+                    "Tmean":{
+                        "python_class":"eumopps.catalogue.placeholder.InputFile",
+                        "datasetname":"rawbinary_surfaceairmodel_ocean_Tmean_correlationranges"
+                    }
+                },
+                "observable_filenames":{
+                    "Tmean":{
+                        "python_class":"eumopps.catalogue.placeholder.InputFile",
+                        "datasetname":"rawbinary_surfaceairmodel_ocean_Tmean",
+                        "missing_data":"allowed"
+                    }
+                }
+            },
+            {
+                "fixed_location_lookup_filename":{
+                    "python_class":"eumopps.catalogue.placeholder.InputFile",
+                    "datasetname":"locationlookup_satellite"
+                },
+                "local_correlation_ranges_filenames":{
+                    "Tmin":{
+                        "python_class":"eumopps.catalogue.placeholder.InputFile",
+                        "datasetname":"rawbinary_surfaceairmodel_ice_Tmin_correlationranges"
+                    },
+                    "Tmean":{
+                        "python_class":"eumopps.catalogue.placeholder.InputFile",
+                        "datasetname":"rawbinary_surfaceairmodel_ice_Tmean_correlationranges"
+                    },
+                    "Tmax":{
+                        "python_class":"eumopps.catalogue.placeholder.InputFile",
+                        "datasetname":"rawbinary_surfaceairmodel_ice_Tmax_correlationranges"
+                    }
+                },
+                "observable_filenames":{
+                    "Tmin":{
+                        "python_class":"eumopps.catalogue.placeholder.InputFile",
+                        "datasetname":"rawbinary_surfaceairmodel_ice_Tmin",
+                        "missing_data":"allowed"
+                    },
+                    "Tmean":{
+                        "python_class":"eumopps.catalogue.placeholder.InputFile",
+                        "datasetname":"rawbinary_surfaceairmodel_ice_Tmean",
+                        "missing_data":"allowed"
+                    },
+                    "Tmax":{
+                        "python_class":"eumopps.catalogue.placeholder.InputFile",
+                        "datasetname":"rawbinary_surfaceairmodel_ice_Tmax",
+                        "missing_data":"allowed"
+                    }
+                }
+            }
+        ],
+
+        "output": { 
+          "python_class": "eumopps.catalogue.placeholder.OutputFile",
+          "datasetname": "input_lists"
+        }
+      }
+    },
+    
+    {
+        "python_class": "eumopps.catalogue.operation.Operation",
+        "name": "input_list_merge",
+        "step": { "python_class": "eumopps.catalogue.step.StepOnce" },
+
+        "newdatasets": [
+            {
+            "python_class": "eumopps.catalogue.dataset.CatalogueDataSet",
+            "name": "merged_input_list",
+            "subsets" : [ 
+                {
+                "python_class": "eumopps.catalogue.dataset.CatalogueDataSubset",
+            "layout":
+            {
+                "python_class": "eumopps.catalogue.storage.DataStorageFiles",
+                "patterns": [ "local_hyperparameters/", "allinputs.json" ]
+            }
+                }
+            ]
+            }
+        ],
+
+        "runmodule": {
+
+        "python_function": "eustace.analysis.advanced_standard.fileio.optimization_inputs.input_list",
+        
+        "allinputs":  { "python_class": "eumopps.catalogue.placeholder.InputFileList", "datasetname": "input_lists"},
+
+        "output": { 
+          "python_class": "eumopps.catalogue.placeholder.OutputFile",
+          "datasetname": "merged_input_list"
+        }
+      }
+    }
+  ]
+}

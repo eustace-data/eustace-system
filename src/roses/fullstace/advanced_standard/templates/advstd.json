@@ -1,0 +1,563 @@
+{
+    "python_class" : "eumopps.catalogue.catalogue.Catalogue",
+
+    "operations" : [
+
+    {
+	"python_class" : "eumopps.catalogue.operation.Operation",
+	"name" : "climatology_input",
+	"runmodule" : 
+	{
+            "python_function" : "eustace.analysis.advanced_standard.examples.example_eustace.process_inputs",
+	    "storage_climatology":
+	    {
+	        "python_class" : "eustace.analysis.advanced_standard.components.storage_files.SpaceTimeComponentSolutionStorage_Files",
+	        "measurement_time_index_write" :  { "python_class": "eustace.analysis.advanced_standard.examples.placeholder.AnalysisStepIndex" },
+	        "measurementfilename_write" : { "python_class" : "eumopps.catalogue.placeholder.OutputFile", "datasetname": "measurement_climatology" }
+            },
+	    "storage_large_scale" :
+	    {
+		"python_class" : "eustace.analysis.advanced_standard.components.storage_files.SpaceTimeComponentSolutionStorage_Files"
+	    },
+	    "storage_local" :
+	    {
+	        "python_class" : "eustace.analysis.advanced_standard.components.storage_files.SpatialComponentSolutionStorage_Files"
+	    },
+	    "inputsources":  [ 
+            {
+	        "fixed_location_lookup_filename" : { "python_class" : "eumopps.catalogue.placeholder.InputFile", "datasetname": "locationlookup_insitu_land" },
+		"local_correlation_ranges_filenames" : 
+		{
+	            "Tmin" : { "python_class" : "eumopps.catalogue.placeholder.InputFile", "datasetname" : "rawbinary_insitu_land_Tmin_correlationranges" },
+	            "Tmax" : { "python_class" : "eumopps.catalogue.placeholder.InputFile", "datasetname" : "rawbinary_insitu_land_Tmax_correlationranges" }
+		},
+		"observable_filenames" : 
+		{
+	            "Tmin" : { "python_class" : "eumopps.catalogue.placeholder.InputFile", "datasetname" : "rawbinary_insitu_land_Tmin", "missing_data" : "allowed" },
+	            "Tmax" : { "python_class" : "eumopps.catalogue.placeholder.InputFile", "datasetname" : "rawbinary_insitu_land_Tmax", "missing_data" : "allowed" }
+		}
+	    },
+            {
+		"local_correlation_ranges_filenames" : 
+		{
+	            "Tmean" : { "python_class" : "eumopps.catalogue.placeholder.InputFile", "datasetname" : "rawbinary_insitu_ocean_Tmean_correlationranges" }
+		},
+		"observable_filenames" : 
+		{
+	            "Tmean" : { "python_class" : "eumopps.catalogue.placeholder.InputFile", "datasetname" : "rawbinary_insitu_ocean_Tmean", "subsetindex" : 0, "missing_data" : "allowed" }
+		},
+		"mobile_location_lookup_filenames" : 
+		{
+	            "Tmean" : { "python_class" : "eumopps.catalogue.placeholder.InputFile", "datasetname" : "rawbinary_insitu_ocean_Tmean", "subsetindex" : 1, "missing_data" : "allowed" }
+		}
+	    },
+            {
+	        "fixed_location_lookup_filename" : { "python_class" : "eumopps.catalogue.placeholder.InputFile", "datasetname": "locationlookup_satellite" },
+		"local_correlation_ranges_filenames" : 
+		{
+	            "Tmin" : { "python_class" : "eumopps.catalogue.placeholder.InputFile", "datasetname" : "rawbinary_surfaceairmodel_land_Tmin_correlationranges" },
+	            "Tmax" : { "python_class" : "eumopps.catalogue.placeholder.InputFile", "datasetname" : "rawbinary_surfaceairmodel_land_Tmax_correlationranges" }
+		},
+		"observable_filenames" : 
+		{
+	            "Tmin" : { "python_class" : "eumopps.catalogue.placeholder.InputFile", "datasetname" : "rawbinary_surfaceairmodel_land_Tmin", "missing_data" : "allowed" },
+	            "Tmax" : { "python_class" : "eumopps.catalogue.placeholder.InputFile", "datasetname" : "rawbinary_surfaceairmodel_land_Tmax", "missing_data" : "allowed" }
+		}
+	    },
+            {
+	        "fixed_location_lookup_filename" : { "python_class" : "eumopps.catalogue.placeholder.InputFile", "datasetname": "locationlookup_satellite" },
+		"local_correlation_ranges_filenames" : 
+		{
+	            "Tmean" : { "python_class" : "eumopps.catalogue.placeholder.InputFile", "datasetname" : "rawbinary_surfaceairmodel_ocean_Tmean_correlationranges" }
+		},
+		"observable_filenames" : 
+		{
+	            "Tmean" : { "python_class" : "eumopps.catalogue.placeholder.InputFile", "datasetname" : "rawbinary_surfaceairmodel_ocean_Tmean", "missing_data" : "allowed" }
+		}
+	    },
+            {
+	        "fixed_location_lookup_filename" : { "python_class" : "eumopps.catalogue.placeholder.InputFile", "datasetname": "locationlookup_satellite" },
+		"local_correlation_ranges_filenames" : 
+		{
+	            "Tmin" : { "python_class" : "eumopps.catalogue.placeholder.InputFile", "datasetname" : "rawbinary_surfaceairmodel_ice_Tmin_correlationranges" },
+		    "Tmean" : { "python_class" : "eumopps.catalogue.placeholder.InputFile", "datasetname" : "rawbinary_surfaceairmodel_ice_Tmean_correlationranges" },
+	            "Tmax" : { "python_class" : "eumopps.catalogue.placeholder.InputFile", "datasetname" : "rawbinary_surfaceairmodel_ice_Tmax_correlationranges" }
+		},
+		"observable_filenames" : 
+		{
+	            "Tmin" : { "python_class" : "eumopps.catalogue.placeholder.InputFile", "datasetname" : "rawbinary_surfaceairmodel_ice_Tmin", "missing_data" : "allowed" },
+	            "Tmean" : { "python_class" : "eumopps.catalogue.placeholder.InputFile", "datasetname" : "rawbinary_surfaceairmodel_ice_Tmean", "missing_data" : "allowed" },
+	            "Tmax" : { "python_class" : "eumopps.catalogue.placeholder.InputFile", "datasetname" : "rawbinary_surfaceairmodel_ice_Tmax", "missing_data" : "allowed" }
+		}
+	    }
+            ],
+	    "time_index" : { "python_class" : "eustace.analysis.advanced_standard.examples.placeholder.AnalysisStepIndex" },
+	    "component_index" : 0,
+	    "covariates_descriptor" : "/gws/nopw/j04/eustace/data/internal/climatology_covariates/covariates.json",
+	    "insitu_biases": 1 ,
+	    "breakpoints_file":"/gws/nopw/j04/eustace/data/internal/D1.7/daily/eustace_stations_global_R001127_daily_status.nc",
+	    "global_biases": 1 ,
+	    "global_biases_group_list":["surfaceairmodel_ice_global", "surfaceairmodel_land_global", "surfaceairmodel_ocean_global"],
+	    "compute_uncertainties": 0,
+        "method":"APPROXIMATED"
+	},
+	"step" : { "python_class" : "eumopps.catalogue.step.StepDaily", "start" : "20060101000000", "end" : "20101231000000" },
+        "newdatasets": [
+	{
+            "python_class" : "eumopps.catalogue.dataset.CatalogueDataSet",
+	    "name"  : "measurement_climatology",
+	    "subsets" : [
+	    {	    
+	        "python_class" : "eumopps.catalogue.dataset.CatalogueDataSubset",
+		"layout" : 
+		{
+		    "python_class" : "eumopps.catalogue.storage.DataStorageFiles",
+		    "patterns" : [ "measurement_climatology/%Y/", "measurement_climatology_%Y%m%d.pickle" ]
+		}
+	    }
+	    ]
+	}
+	]
+    },
+
+    {
+	"python_class" : "eumopps.catalogue.operation.Operation",
+	"name" : "climatology_solve",
+	"runmodule" : 
+	{
+            "python_function" : "eustace.analysis.advanced_standard.examples.example_eustace.solve",
+	    "storage_climatology" :
+	    {
+	        "python_class" : "eustace.analysis.advanced_standard.components.storage_files.SpaceTimeComponentSolutionStorage_Files",
+	        "measurementfilelist_read" : { "python_class" : "eumopps.catalogue.placeholder.InputFileList", "datasetname" : "measurement_climatology" },
+	        "statefilename_write" :  { "python_class": "eumopps.catalogue.placeholder.OutputFile", "datasetname" : "solution_climatology" },
+	        "marginal_std_filename_write" : { "python_class" : "eumopps.catalogue.placeholder.OutputFile", "datasetname" : "uncertainties_climatology"}
+            },
+	    "storage_large_scale" :
+	    {
+		"python_class" : "eustace.analysis.advanced_standard.components.storage_files.SpaceTimeComponentSolutionStorage_Files"
+	    },
+	    "storage_local" :
+	    {
+	        "python_class" : "eustace.analysis.advanced_standard.components.storage_files.SpatialComponentSolutionStorage_Files"
+	    },
+	    "component_index" : 0,
+	    "covariates_descriptor" : "/gws/nopw/j04/eustace/data/internal/climatology_covariates/covariates.json",
+	    "insitu_biases": 1 ,
+	    "breakpoints_file":"/gws/nopw/j04/eustace/data/internal/D1.7/daily/eustace_stations_global_R001127_daily_status.nc",
+	    "global_biases": 1 ,
+	    "global_biases_group_list":["surfaceairmodel_ice_global", "surfaceairmodel_land_global", "surfaceairmodel_ocean_global"],
+	    "compute_uncertainties": 0,
+        "method":"APPROXIMATED"
+	},
+	"step" : { "python_class" : "eumopps.catalogue.step.StepOnce" },
+    "newdatasets": [
+        {
+        "python_class" : "eumopps.catalogue.dataset.CatalogueDataSet",
+        "name"  : "solution_climatology",
+        "subsets" : [
+                {
+                    "python_class" : "eumopps.catalogue.dataset.CatalogueDataSubset",
+                    "layout" : 
+                    {
+                        "python_class" : "eumopps.catalogue.storage.DataStorageFiles",
+                        "patterns" : [ "solution_climatology/solution_climatology.pickle" ]
+                    }
+                }
+            ]
+        },
+        {
+        "python_class" : "eumopps.catalogue.dataset.CatalogueDataSet",
+        "name"  : "uncertainties_climatology",
+        "subsets" : [
+                {
+                    "python_class" : "eumopps.catalogue.dataset.CatalogueDataSubset",
+                    "layout" : 
+                    {
+                        "python_class" : "eumopps.catalogue.storage.DataStorageFiles",
+                        "patterns" : [ "solution_climatology/uncertainties_climatology.pickle" ]
+                    }
+                }
+            ]
+        }
+	]
+    },
+
+
+    {
+	"python_class" : "eumopps.catalogue.operation.Operation",
+	"name" : "large_scale_input",
+	"runmodule" : 
+	{
+            "python_function" : "eustace.analysis.advanced_standard.examples.example_eustace.process_inputs",
+	    "storage_climatology":
+	    {
+	    	"python_class" : "eustace.analysis.advanced_standard.components.storage_files.SpaceTimeComponentSolutionStorage_Files",
+		"statefilename_read" : { "python_class" : "eumopps.catalogue.placeholder.InputFile", "datasetname" : "solution_climatology" }
+            },
+	    "storage_large_scale" :
+	    {
+		"python_class" : "eustace.analysis.advanced_standard.components.storage_files.SpaceTimeComponentSolutionStorage_Files",
+		"measurement_time_index_write" :  { "python_class" : "eustace.analysis.advanced_standard.examples.placeholder.AnalysisStepIndex" },
+		"measurementfilename_write" : { "python_class" : "eumopps.catalogue.placeholder.OutputFile", "datasetname" : "measurement_large_scale" }
+	    },
+	    "storage_local" :
+	    {
+	        "python_class" : "eustace.analysis.advanced_standard.components.storage_files.SpatialComponentSolutionStorage_Files"
+	    },
+	    "inputsources":  [ 
+            {
+	        "fixed_location_lookup_filename" : { "python_class" : "eumopps.catalogue.placeholder.InputFile", "datasetname": "locationlookup_insitu_land" },
+		"local_correlation_ranges_filenames" : 
+		{
+	            "Tmin" : { "python_class" : "eumopps.catalogue.placeholder.InputFile", "datasetname" : "rawbinary_insitu_land_Tmin_correlationranges" },
+	            "Tmax" : { "python_class" : "eumopps.catalogue.placeholder.InputFile", "datasetname" : "rawbinary_insitu_land_Tmax_correlationranges" }
+		},
+		"observable_filenames" : 
+		{
+	            "Tmin" : { "python_class" : "eumopps.catalogue.placeholder.InputFile", "datasetname" : "rawbinary_insitu_land_Tmin", "missing_data" : "allowed" },
+	            "Tmax" : { "python_class" : "eumopps.catalogue.placeholder.InputFile", "datasetname" : "rawbinary_insitu_land_Tmax", "missing_data" : "allowed" }
+		}
+	    },
+            {
+		"local_correlation_ranges_filenames" : 
+		{
+	            "Tmean" : { "python_class" : "eumopps.catalogue.placeholder.InputFile", "datasetname" : "rawbinary_insitu_ocean_Tmean_correlationranges" }
+		},
+		"observable_filenames" : 
+		{
+	            "Tmean" : { "python_class" : "eumopps.catalogue.placeholder.InputFile", "datasetname" : "rawbinary_insitu_ocean_Tmean", "subsetindex" : 0, "missing_data" : "allowed" }
+		},
+		"mobile_location_lookup_filenames" : 
+		{
+	            "Tmean" : { "python_class" : "eumopps.catalogue.placeholder.InputFile", "datasetname" : "rawbinary_insitu_ocean_Tmean", "subsetindex" : 1, "missing_data" : "allowed" }
+		}
+	    },
+            {
+	        "fixed_location_lookup_filename" : { "python_class" : "eumopps.catalogue.placeholder.InputFile", "datasetname": "locationlookup_satellite" },
+		"local_correlation_ranges_filenames" : 
+		{
+	            "Tmin" : { "python_class" : "eumopps.catalogue.placeholder.InputFile", "datasetname" : "rawbinary_surfaceairmodel_land_Tmin_correlationranges" },
+	            "Tmax" : { "python_class" : "eumopps.catalogue.placeholder.InputFile", "datasetname" : "rawbinary_surfaceairmodel_land_Tmax_correlationranges" }
+		},
+		"observable_filenames" : 
+		{
+	            "Tmin" : { "python_class" : "eumopps.catalogue.placeholder.InputFile", "datasetname" : "rawbinary_surfaceairmodel_land_Tmin", "missing_data" : "allowed" },
+	            "Tmax" : { "python_class" : "eumopps.catalogue.placeholder.InputFile", "datasetname" : "rawbinary_surfaceairmodel_land_Tmax", "missing_data" : "allowed" }
+		}
+	    },
+            {
+	        "fixed_location_lookup_filename" : { "python_class" : "eumopps.catalogue.placeholder.InputFile", "datasetname": "locationlookup_satellite" },
+		"local_correlation_ranges_filenames" : 
+		{
+	            "Tmean" : { "python_class" : "eumopps.catalogue.placeholder.InputFile", "datasetname" : "rawbinary_surfaceairmodel_ocean_Tmean_correlationranges" }
+		},
+		"observable_filenames" : 
+		{
+	            "Tmean" : { "python_class" : "eumopps.catalogue.placeholder.InputFile", "datasetname" : "rawbinary_surfaceairmodel_ocean_Tmean", "missing_data" : "allowed" }
+		}
+	    },
+            {
+	        "fixed_location_lookup_filename" : { "python_class" : "eumopps.catalogue.placeholder.InputFile", "datasetname": "locationlookup_satellite" },
+		"local_correlation_ranges_filenames" : 
+		{
+	            "Tmin" : { "python_class" : "eumopps.catalogue.placeholder.InputFile", "datasetname" : "rawbinary_surfaceairmodel_ice_Tmin_correlationranges" },
+		    "Tmean" : { "python_class" : "eumopps.catalogue.placeholder.InputFile", "datasetname" : "rawbinary_surfaceairmodel_ice_Tmean_correlationranges" },
+	            "Tmax" : { "python_class" : "eumopps.catalogue.placeholder.InputFile", "datasetname" : "rawbinary_surfaceairmodel_ice_Tmax_correlationranges" }
+		},
+		"observable_filenames" : 
+		{
+	            "Tmin" : { "python_class" : "eumopps.catalogue.placeholder.InputFile", "datasetname" : "rawbinary_surfaceairmodel_ice_Tmin", "missing_data" : "allowed" },
+	            "Tmean" : { "python_class" : "eumopps.catalogue.placeholder.InputFile", "datasetname" : "rawbinary_surfaceairmodel_ice_Tmean", "missing_data" : "allowed" },
+	            "Tmax" : { "python_class" : "eumopps.catalogue.placeholder.InputFile", "datasetname" : "rawbinary_surfaceairmodel_ice_Tmax", "missing_data" : "allowed" }
+		}
+	    }
+            ],
+	    "time_index" : { "python_class" : "eustace.analysis.advanced_standard.examples.placeholder.AnalysisStepIndex" },
+	    "component_index" : 1,
+	    "covariates_descriptor" : "/gws/nopw/j04/eustace/data/internal/climatology_covariates/covariates.json",
+	    "insitu_biases": 1 ,
+	    "breakpoints_file":"/gws/nopw/j04/eustace/data/internal/D1.7/daily/eustace_stations_global_R001127_daily_status.nc",
+	    "global_biases": 1 ,
+	    "global_biases_group_list":["surfaceairmodel_ice_global", "surfaceairmodel_land_global", "surfaceairmodel_ocean_global"],
+        "compute_uncertainties": 0,
+        "method":"APPROXIMATED"
+	},
+	"step" : { "python_class" : "eumopps.catalogue.step.StepDaily", "start" : "20060101000000", "end" : "20101231000000" },
+        "newdatasets": [
+	{
+            "python_class" : "eumopps.catalogue.dataset.CatalogueDataSet",
+	    "name"  : "measurement_large_scale",
+	    "subsets" : [
+	    {
+	        "python_class" : "eumopps.catalogue.dataset.CatalogueDataSubset",
+		"layout" : 
+		{
+		    "python_class" : "eumopps.catalogue.storage.DataStorageFiles",
+		    "patterns" : [ "measurement_large_scale/%Y/", "measurement_large_scale_%Y%m%d.pickle" ]
+		}
+	    }
+	    ]
+	}
+	]
+    },
+
+    {
+	"python_class" : "eumopps.catalogue.operation.Operation",
+	"name" : "large_scale_solve",
+	"runmodule" : 
+	{
+            "python_function" : "eustace.analysis.advanced_standard.examples.example_eustace.solve",
+	    "storage_climatology" :
+            {
+	        "python_class" : "eustace.analysis.advanced_standard.components.storage_files.SpaceTimeComponentSolutionStorage_Files",
+		"statefilename_read" : { "python_class" : "eumopps.catalogue.placeholder.InputFile", "datasetname" : "solution_climatology" }
+            },
+	    "storage_large_scale" :
+	    {
+		"python_class" : "eustace.analysis.advanced_standard.components.storage_files.SpaceTimeComponentSolutionStorage_Files",
+		"measurementfilelist_read" : { "python_class" : "eumopps.catalogue.placeholder.InputFileList", "datasetname" : "measurement_large_scale" },
+		"statefilename_write" :  { "python_class": "eumopps.catalogue.placeholder.OutputFile", "datasetname" : "solution_large_scale" },
+		"marginal_std_filename_write" : { "python_class" : "eumopps.catalogue.placeholder.OutputFile", "datasetname" : "uncertainties_large_scale" }
+	    },
+	    "storage_local" :
+	    {
+	        "python_class" : "eustace.analysis.advanced_standard.components.storage_files.SpatialComponentSolutionStorage_Files"
+	    },
+	    "component_index" : 1,
+	    "covariates_descriptor" : "/gws/nopw/j04/eustace/data/internal/climatology_covariates/covariates.json",
+	    "insitu_biases": 1 ,
+	    "breakpoints_file":"/gws/nopw/j04/eustace/data/internal/D1.7/daily/eustace_stations_global_R001127_daily_status.nc",
+	    "global_biases": 1 ,
+	    "global_biases_group_list":["surfaceairmodel_ice_global", "surfaceairmodel_land_global", "surfaceairmodel_ocean_global"],
+        "compute_uncertainties": 0,
+        "method":"APPROXIMATED"
+	},
+	"step" : { "python_class" : "eumopps.catalogue.step.StepOnce" },
+    "newdatasets": [
+        {
+        "python_class" : "eumopps.catalogue.dataset.CatalogueDataSet",
+	    "name"  : "solution_large_scale",
+	    "subsets" : [
+                {
+                    "python_class" : "eumopps.catalogue.dataset.CatalogueDataSubset",
+                    "layout" : 
+                    {
+                        "python_class" : "eumopps.catalogue.storage.DataStorageFiles",
+                        "patterns" : [ "solution_large_scale/solution_large_scale.pickle" ]
+                    }
+                }
+            ]
+        },
+        {
+        "python_class" : "eumopps.catalogue.dataset.CatalogueDataSet",
+        "name"  : "uncertainties_large_scale",
+        "subsets" : [
+                {
+                    "python_class" : "eumopps.catalogue.dataset.CatalogueDataSubset",
+                    "layout" : 
+                    {
+                        "python_class" : "eumopps.catalogue.storage.DataStorageFiles",
+                        "patterns" : [ "solution_large_scale/uncertainties_large_scale.pickle" ]
+                    }
+                }
+            ]
+        }
+	]
+    },
+
+    {
+	"python_class" : "eumopps.catalogue.operation.Operation",
+	"name" : "local_input_and_solve",
+	"runmodule" : 
+	{
+            "python_function" : "eustace.analysis.advanced_standard.examples.example_eustace.process_inputs",
+	    "storage_climatology":
+	    {
+	    	"python_class" : "eustace.analysis.advanced_standard.components.storage_files.SpaceTimeComponentSolutionStorage_Files",
+		"statefilename_read" : { "python_class" : "eumopps.catalogue.placeholder.InputFile", "datasetname" : "solution_climatology" }
+            },
+	    "storage_large_scale" :
+	    {
+		"python_class" : "eustace.analysis.advanced_standard.components.storage_files.SpaceTimeComponentSolutionStorage_Files",
+		"statefilename_read" : { "python_class" : "eumopps.catalogue.placeholder.InputFile", "datasetname" : "solution_large_scale" }
+	    },
+	    "storage_local" :
+	    {
+	        "python_class" : "eustace.analysis.advanced_standard.components.storage_files.SpatialComponentSolutionStorage_Files",
+            "time_index" :  { "python_class" : "eustace.analysis.advanced_standard.examples.placeholder.AnalysisStepIndex" },
+            "statefilename_write" : { "python_class" : "eumopps.catalogue.placeholder.OutputFile", "datasetname" : "solution_local" },
+            "marginal_std_filename_write" : { "python_class" : "eumopps.catalogue.placeholder.OutputFile", "datasetname" : "uncertainties_local" }
+	    },
+
+	    "inputsources":  [ 
+            {
+	        "fixed_location_lookup_filename" : { "python_class" : "eumopps.catalogue.placeholder.InputFile", "datasetname": "locationlookup_insitu_land" },
+		"local_correlation_ranges_filenames" : 
+		{
+	            "Tmin" : { "python_class" : "eumopps.catalogue.placeholder.InputFile", "datasetname" : "rawbinary_insitu_land_Tmin_correlationranges" },
+	            "Tmax" : { "python_class" : "eumopps.catalogue.placeholder.InputFile", "datasetname" : "rawbinary_insitu_land_Tmax_correlationranges" }
+		},
+		"observable_filenames" : 
+		{
+	            "Tmin" : { "python_class" : "eumopps.catalogue.placeholder.InputFile", "datasetname" : "rawbinary_insitu_land_Tmin", "missing_data" : "allowed" },
+	            "Tmax" : { "python_class" : "eumopps.catalogue.placeholder.InputFile", "datasetname" : "rawbinary_insitu_land_Tmax", "missing_data" : "allowed" }
+		}
+	    },
+            {
+		"local_correlation_ranges_filenames" : 
+		{
+	            "Tmean" : { "python_class" : "eumopps.catalogue.placeholder.InputFile", "datasetname" : "rawbinary_insitu_ocean_Tmean_correlationranges" }
+		},
+		"observable_filenames" : 
+		{
+	            "Tmean" : { "python_class" : "eumopps.catalogue.placeholder.InputFile", "datasetname" : "rawbinary_insitu_ocean_Tmean", "subsetindex" : 0, "missing_data" : "allowed" }
+		},
+		"mobile_location_lookup_filenames" : 
+		{
+	            "Tmean" : { "python_class" : "eumopps.catalogue.placeholder.InputFile", "datasetname" : "rawbinary_insitu_ocean_Tmean", "subsetindex" : 1, "missing_data" : "allowed" }
+		}
+	    },
+            {
+	        "fixed_location_lookup_filename" : { "python_class" : "eumopps.catalogue.placeholder.InputFile", "datasetname": "locationlookup_satellite" },
+		"local_correlation_ranges_filenames" : 
+		{
+	            "Tmin" : { "python_class" : "eumopps.catalogue.placeholder.InputFile", "datasetname" : "rawbinary_surfaceairmodel_land_Tmin_correlationranges" },
+	            "Tmax" : { "python_class" : "eumopps.catalogue.placeholder.InputFile", "datasetname" : "rawbinary_surfaceairmodel_land_Tmax_correlationranges" }
+		},
+		"observable_filenames" : 
+		{
+	            "Tmin" : { "python_class" : "eumopps.catalogue.placeholder.InputFile", "datasetname" : "rawbinary_surfaceairmodel_land_Tmin", "missing_data" : "allowed" },
+	            "Tmax" : { "python_class" : "eumopps.catalogue.placeholder.InputFile", "datasetname" : "rawbinary_surfaceairmodel_land_Tmax", "missing_data" : "allowed" }
+		}
+	    },
+            {
+	        "fixed_location_lookup_filename" : { "python_class" : "eumopps.catalogue.placeholder.InputFile", "datasetname": "locationlookup_satellite" },
+		"local_correlation_ranges_filenames" : 
+		{
+	            "Tmean" : { "python_class" : "eumopps.catalogue.placeholder.InputFile", "datasetname" : "rawbinary_surfaceairmodel_ocean_Tmean_correlationranges" }
+		},
+		"observable_filenames" : 
+		{
+	            "Tmean" : { "python_class" : "eumopps.catalogue.placeholder.InputFile", "datasetname" : "rawbinary_surfaceairmodel_ocean_Tmean", "missing_data" : "allowed" }
+		}
+	    },
+            {
+	        "fixed_location_lookup_filename" : { "python_class" : "eumopps.catalogue.placeholder.InputFile", "datasetname": "locationlookup_satellite" },
+		"local_correlation_ranges_filenames" : 
+		{
+	            "Tmin" : { "python_class" : "eumopps.catalogue.placeholder.InputFile", "datasetname" : "rawbinary_surfaceairmodel_ice_Tmin_correlationranges" },
+		    "Tmean" : { "python_class" : "eumopps.catalogue.placeholder.InputFile", "datasetname" : "rawbinary_surfaceairmodel_ice_Tmean_correlationranges" },
+	            "Tmax" : { "python_class" : "eumopps.catalogue.placeholder.InputFile", "datasetname" : "rawbinary_surfaceairmodel_ice_Tmax_correlationranges" }
+		},
+		"observable_filenames" : 
+		{
+	            "Tmin" : { "python_class" : "eumopps.catalogue.placeholder.InputFile", "datasetname" : "rawbinary_surfaceairmodel_ice_Tmin", "missing_data" : "allowed" },
+	            "Tmean" : { "python_class" : "eumopps.catalogue.placeholder.InputFile", "datasetname" : "rawbinary_surfaceairmodel_ice_Tmean", "missing_data" : "allowed" },
+	            "Tmax" : { "python_class" : "eumopps.catalogue.placeholder.InputFile", "datasetname" : "rawbinary_surfaceairmodel_ice_Tmax", "missing_data" : "allowed" }
+		}
+	    }
+            ],
+
+	    "time_index" : { "python_class" : "eustace.analysis.advanced_standard.examples.placeholder.AnalysisStepIndex" },
+	    "component_index" : 2,
+	    "covariates_descriptor" : "/gws/nopw/j04/eustace/data/internal/climatology_covariates/covariates.json",
+	    "insitu_biases": 1 ,
+	    "breakpoints_file":"/gws/nopw/j04/eustace/data/internal/D1.7/daily/eustace_stations_global_R001127_daily_status.nc",
+	    "global_biases": 1 ,
+	    "global_biases_group_list":["surfaceairmodel_ice_global", "surfaceairmodel_land_global", "surfaceairmodel_ocean_global"],
+        "compute_uncertainties": 0,
+        "method":"APPROXIMATED"
+	},
+    "step" : { "python_class" : "eumopps.catalogue.step.StepDaily", "start" : "20060101000000", "end" : "20101231000000" },
+    "newdatasets": [
+        {
+            "python_class" : "eumopps.catalogue.dataset.CatalogueDataSet",
+            "name"  : "solution_local",
+            "subsets" : [
+                {
+                    "python_class" : "eumopps.catalogue.dataset.CatalogueDataSubset",
+                    "layout" : 
+                        {
+                            "python_class" : "eumopps.catalogue.storage.DataStorageFiles",
+                            "patterns" : [ "solution_local/%Y/", "solution_local_%Y%m%d.pickle" ]
+                        }
+                }
+            ]
+        },
+        {
+            "python_class" : "eumopps.catalogue.dataset.CatalogueDataSet",
+            "name"  : "uncertainties_local",
+            "subsets" : [
+                {
+                    "python_class" : "eumopps.catalogue.dataset.CatalogueDataSubset",
+                    "layout" : 
+                        {
+                            "python_class" : "eumopps.catalogue.storage.DataStorageFiles",
+                            "patterns" : [ "solution_local/%Y/", "uncertainties_local_%Y%m%d.pickle" ]
+                        }
+                }
+            ]
+        }
+	]
+    },
+	
+	
+    {
+	"python_class" : "eumopps.catalogue.operation.Operation",
+	"name" : "output_grid",
+	"runmodule" : 
+	{
+            "python_function" : "eustace.analysis.advanced_standard.examples.example_eustace.output_grid",
+	    "storage_climatology":
+	    {
+	    	"python_class" : "eustace.analysis.advanced_standard.components.storage_files.SpaceTimeComponentSolutionStorage_Files",
+		"statefilename_read" : { "python_class" : "eumopps.catalogue.placeholder.InputFile", "datasetname" : "solution_climatology", "missing_data":"allowed" },
+		"marginal_std_filename_read" : { "python_class" : "eumopps.catalogue.placeholder.InputFile", "datasetname" : "uncertainties_climatology", "missing_data":"allowed" }
+            },
+	    "storage_large_scale" :
+	    {
+		"python_class" : "eustace.analysis.advanced_standard.components.storage_files.SpaceTimeComponentSolutionStorage_Files",
+		"statefilename_read" : { "python_class" : "eumopps.catalogue.placeholder.InputFile", "datasetname" : "solution_large_scale", "missing_data":"allowed" },
+		"marginal_std_filename_read" : { "python_class" : "eumopps.catalogue.placeholder.InputFile", "datasetname" : "uncertainties_large_scale", "missing_data":"allowed" }
+	    },
+	    "storage_local" :
+	    {
+	        "python_class" : "eustace.analysis.advanced_standard.components.storage_files.SpatialComponentSolutionStorage_Files",
+		"time_index" :  { "python_class" : "eustace.analysis.advanced_standard.examples.placeholder.AnalysisStepIndex" },
+		"statefilename_read" : { "python_class" : "eumopps.catalogue.placeholder.InputFile", "datasetname" : "solution_local", "missing_data":"allowed" },
+        "marginal_std_filename_read" : { "python_class" : "eumopps.catalogue.placeholder.InputFile", "datasetname" : "uncertainties_local", "missing_data":"allowed" }
+	    },
+	    "processdate" : { "python_class" : "eumopps.catalogue.placeholder.StepTime" },
+	    "time_index" :  { "python_class" : "eustace.analysis.advanced_standard.examples.placeholder.AnalysisStepIndex" },
+	    "outputfile" : { "python_class" : "eumopps.catalogue.placeholder.OutputFile", "datasetname" : "eustace_example_infilled"  },
+            "covariates_descriptor" : "/gws/nopw/j04/eustace/data/internal/climatology_covariates/covariates.json",
+	    "insitu_biases": 1 ,
+	    "breakpoints_file":"/gws/nopw/j04/eustace/data/internal/D1.7/daily/eustace_stations_global_R001127_daily_status.nc",
+	    "global_biases": 1 ,
+	    "global_biases_group_list":["surfaceairmodel_ice_global", "surfaceairmodel_land_global", "surfaceairmodel_ocean_global"],
+        "compute_uncertainties": 0,
+        "method":"APPROXIMATED"	    
+
+	},
+	"step" : { "python_class" : "eumopps.catalogue.step.StepDaily", "start" : "20060101000000", "end" : "20101231000000" },
+    "newdatasets": [
+            {
+                "python_class" : "eumopps.catalogue.dataset.CatalogueDataSet",
+                "name"  : "eustace_example_infilled",
+                "subsets" : [
+                    {
+                        "python_class" : "eumopps.catalogue.dataset.CatalogueDataSubset",
+                        "layout" : 
+                        {
+                        "python_class" : "eumopps.catalogue.storage.DataStorageFiles",
+                        "patterns" : [ "eustace_example_infilled/%Y/", "eustace_example_infilled_%Y%m%d.nc" ]
+                        }
+                    }
+                ]
+            }
+            ]
+    }	
+	
+    ]
+}

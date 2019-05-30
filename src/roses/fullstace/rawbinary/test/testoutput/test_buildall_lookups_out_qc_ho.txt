@@ -1,0 +1,29 @@
+ --- 
+Eumopps Options
+ --- 
+Eumopps options: --allow_unversioned_code
+ --- 
+Building lookups
+ --- 
+
+args list : False 
+
+module name is:  eustace.analysis.preparecorrelationranges
+('Running:', "<function run at 0x2a28de8> ('eustace.analysis.preparecorrelationranges')")
+With:
+[u'sourcename', u'observable', u'inputfilename', u'outputfilename']
+
+args list : False 
+
+module name is:  eustace.analysis.preparecorrelationranges
+('Running:', "<function run at 0x3078de8> ('eustace.analysis.preparecorrelationranges')")
+With:
+[u'sourcename', u'observable', u'inputfilename', u'outputfilename']
+
+args list : False 
+
+module name is:  eustace.analysis.preparelocationlookup
+('Running:', "<function run at 0x2f74cf8> ('eustace.analysis.preparelocationlookup')")
+With:
+[u'sourcename', u'inputfilename', u'outputfilename']
+Loading:  /gws/nopw/j04/eustace/users/ybrugnara/D1.7/daily/eustace_stations_global_R001124_2006_daily_temperature.nc

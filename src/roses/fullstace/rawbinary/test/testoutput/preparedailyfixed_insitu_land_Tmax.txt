@@ -1,0 +1,79 @@
+Eumopps options: --allow_unversioned_code
+module: preparedailyfixed_insitu_land_Tmax
+Running: ./test_lsf_rawbinary.sh for EUMOPPS module preparedailyfixed_insitu_land_Tmax with 37 batches of 10
+/work/scratch/jwinn/rawbinary_test_land_noqc_ho/catalogue.nc
+--allow_unversioned_code
+preparedailyfixed_insitu_land_Tmax_batch0[1-10]
+Job <7457408> is submitted to queue <short-serial>.
+preparedailyfixed_insitu_land_Tmax_batch1[11-20]
+Job <7457409> is submitted to queue <short-serial>.
+preparedailyfixed_insitu_land_Tmax_batch2[21-30]
+Job <7457410> is submitted to queue <short-serial>.
+preparedailyfixed_insitu_land_Tmax_batch3[31-40]
+Job <7457411> is submitted to queue <short-serial>.
+preparedailyfixed_insitu_land_Tmax_batch4[41-50]
+Job <7457412> is submitted to queue <short-serial>.
+preparedailyfixed_insitu_land_Tmax_batch5[51-60]
+Job <7457413> is submitted to queue <short-serial>.
+preparedailyfixed_insitu_land_Tmax_batch6[61-70]
+Job <7457414> is submitted to queue <short-serial>.
+preparedailyfixed_insitu_land_Tmax_batch7[71-80]
+Job <7457415> is submitted to queue <short-serial>.
+preparedailyfixed_insitu_land_Tmax_batch8[81-90]
+Job <7457416> is submitted to queue <short-serial>.
+preparedailyfixed_insitu_land_Tmax_batch9[91-100]
+Job <7457417> is submitted to queue <short-serial>.
+preparedailyfixed_insitu_land_Tmax_batch10[101-110]
+Job <7457418> is submitted to queue <short-serial>.
+preparedailyfixed_insitu_land_Tmax_batch11[111-120]
+Job <7457419> is submitted to queue <short-serial>.
+preparedailyfixed_insitu_land_Tmax_batch12[121-130]
+Job <7457420> is submitted to queue <short-serial>.
+preparedailyfixed_insitu_land_Tmax_batch13[131-140]
+Job <7457421> is submitted to queue <short-serial>.
+preparedailyfixed_insitu_land_Tmax_batch14[141-150]
+Job <7457422> is submitted to queue <short-serial>.
+preparedailyfixed_insitu_land_Tmax_batch15[151-160]
+Job <7457423> is submitted to queue <short-serial>.
+preparedailyfixed_insitu_land_Tmax_batch16[161-170]
+Job <7457424> is submitted to queue <short-serial>.
+preparedailyfixed_insitu_land_Tmax_batch17[171-180]
+Job <7457425> is submitted to queue <short-serial>.
+preparedailyfixed_insitu_land_Tmax_batch18[181-190]
+Job <7457426> is submitted to queue <short-serial>.
+preparedailyfixed_insitu_land_Tmax_batch19[191-200]
+Job <7457427> is submitted to queue <short-serial>.
+preparedailyfixed_insitu_land_Tmax_batch20[201-210]
+Job <7457428> is submitted to queue <short-serial>.
+preparedailyfixed_insitu_land_Tmax_batch21[211-220]
+Job <7457429> is submitted to queue <short-serial>.
+preparedailyfixed_insitu_land_Tmax_batch22[221-230]
+Job <7457430> is submitted to queue <short-serial>.
+preparedailyfixed_insitu_land_Tmax_batch23[231-240]
+Job <7457431> is submitted to queue <short-serial>.
+preparedailyfixed_insitu_land_Tmax_batch24[241-250]
+Job <7457432> is submitted to queue <short-serial>.
+preparedailyfixed_insitu_land_Tmax_batch25[251-260]
+Job <7457433> is submitted to queue <short-serial>.
+preparedailyfixed_insitu_land_Tmax_batch26[261-270]
+Job <7457434> is submitted to queue <short-serial>.
+preparedailyfixed_insitu_land_Tmax_batch27[271-280]
+Job <7457435> is submitted to queue <short-serial>.
+preparedailyfixed_insitu_land_Tmax_batch28[281-290]
+Job <7457436> is submitted to queue <short-serial>.
+preparedailyfixed_insitu_land_Tmax_batch29[291-300]
+Job <7457437> is submitted to queue <short-serial>.
+preparedailyfixed_insitu_land_Tmax_batch30[301-310]
+Job <7457438> is submitted to queue <short-serial>.
+preparedailyfixed_insitu_land_Tmax_batch31[311-320]
+Job <7457439> is submitted to queue <short-serial>.
+preparedailyfixed_insitu_land_Tmax_batch32[321-330]
+Job <7457440> is submitted to queue <short-serial>.
+preparedailyfixed_insitu_land_Tmax_batch33[331-340]
+Job <7457441> is submitted to queue <short-serial>.
+preparedailyfixed_insitu_land_Tmax_batch34[341-350]
+Job <7457442> is submitted to queue <short-serial>.
+preparedailyfixed_insitu_land_Tmax_batch35[351-360]
+Job <7457443> is submitted to queue <short-serial>.
+preparedailyfixed_insitu_land_Tmax_batch36[361-370]
+Job <7457444> is submitted to queue <short-serial>.

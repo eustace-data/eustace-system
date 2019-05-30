@@ -1,0 +1,53 @@
+{
+    "python_class" : "eumopps.catalogue.operation.Operation",
+    "name" : null,
+    "runmodule" : 
+    {
+	"python_function" : "eustace.analysis.advanced_standard.examples.example_eustace.output_grid",
+	"storage_climatology":
+	{
+	    "python_class" : "eustace.analysis.advanced_standard.components.storage_files.SpaceTimeComponentSolutionStorage_Files",
+	    "statefilename_read" : { "python_class" : "eumopps.catalogue.placeholder.InputFile", "datasetname" : null, "missing_data":"allowed" },
+	    "marginal_std_filename_read" : { "python_class" : "eumopps.catalogue.placeholder.InputFile", "datasetname" : null, "missing_data":"allowed" }
+	},
+	"storage_large_scale" :
+	{
+	    "python_class" : "eustace.analysis.advanced_standard.components.storage_files.SpaceTimeComponentSolutionStorage_Files",
+	    "statefilename_read" : { "python_class" : "eumopps.catalogue.placeholder.InputFile", "datasetname" : null, "missing_data":"allowed" },
+	    "marginal_std_filename_read" : { "python_class" : "eumopps.catalogue.placeholder.InputFile", "datasetname" : null, "missing_data":"allowed" }
+	},
+	"storage_local" :
+	{
+	    "python_class" : "eustace.analysis.advanced_standard.components.storage_files.SpatialComponentSolutionStorage_Files",
+	    "time_index" :  { "python_class" : "eumopps.catalogue.placeholder.StepIndex" },
+	    "statefilename_read" : { "python_class" : "eumopps.catalogue.placeholder.InputFile", "datasetname" : null, "missing_data":"allowed" },
+	    "marginal_std_filename_read" : { "python_class" : "eumopps.catalogue.placeholder.InputFile", "datasetname" : null, "missing_data":"allowed" }
+	},
+	"processdate" : { "python_class" : "eumopps.catalogue.placeholder.StepTime" },
+	"time_index" :  { "python_class" : "eumopps.catalogue.placeholder.StepIndex" },
+	"outputfile" : { "python_class" : "eumopps.catalogue.placeholder.OutputFile", "datasetname" : null  },
+	"covariates_descriptor" : "/gws/nopw/j04/eustace/data/internal/climatology_covariates/covariates.json",
+	"insitu_biases": null ,
+	"breakpoints_file":"/gws/nopw/j04/eustace/data/internal/D1.7/daily/eustace_stations_global_R001127_daily_status.nc",
+	"global_biases": null ,
+	"global_biases_group_list":["surfaceairmodel_ice_global" , "surfaceairmodel_land_global", "surfaceairmodel_ocean_global"]  
+
+    },
+    "step" : { "python_class" : "eumopps.catalogue.step.StepDaily", "start" : null, "end" : null },
+    "newdatasets": [
+    {
+	"python_class" : "eumopps.catalogue.dataset.CatalogueDataSet",
+	"name"  : null,
+	"subsets" : [
+	{
+	    "python_class" : "eumopps.catalogue.dataset.CatalogueDataSubset",
+	    "layout" : 
+	    {
+		"python_class" : "eumopps.catalogue.storage.DataStorageFiles",
+		"patterns" : null
+	    }
+	}
+	]
+    }
+    ]
+}

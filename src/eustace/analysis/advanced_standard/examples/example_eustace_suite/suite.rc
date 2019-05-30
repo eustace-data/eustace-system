@@ -1,0 +1,69 @@
+#!jinja2 
+
+title = "EUSTACE example advanced standard"
+
+{% set CATALOGUE = '/work/scratch/joel/example_eustace/op.nc' %}
+{% set VERSION = '--allow_unversioned_code' %}
+{% set MAX_SIMULTANEOUS = 29 %}
+{% set MODULES =
+   { 'climatology_input': { 'catalogue': CATALOGUE, 'batchsize': 29, 'options': VERSION } }
+   { 'climatology_solve': { 'catalogue': CATALOGUE, 'batchsize': 29, 'options': VERSION } },
+   { 'large_scale_input': { 'catalogue': CATALOGUE, 'batchsize': 29, 'options': VERSION } },
+   { 'large_scale_solve': { 'catalogue': CATALOGUE, 'batchsize': 29, 'options': VERSION } },
+   { 'local_input_and_solve': { 'catalogue': CATALOGUE, 'batchsize': 29, 'options': VERSION } },
+   { 'output_grid': { 'catalogue': CATALOGUE, 'batchsize': 29, 'options': VERSION } },
+%}
+
+[cylc]
+    [[parameters]]
+	{{ MODULES | eumopps_cylc('parameters') }}
+
+[scheduling]
+
+    cycling mode = integer 
+    max active cycle points = {{ MAX_SIMULTANEOUS }}
+    spawn to max active cycle points = True
+    initial cycle point = {{ MODULES | eumopps_cylc('initial_cycle_point') }}
+    final cycle point = {{ MODULES | eumopps_cylc('final_cycle_point') }}
+
+    [[dependencies]]
+
+        [[[{{ MODULES | eumopps_cylc('module_scheduling', 'climatology_input') }}]]]
+           graph = """{{ MODULES | eumopps_cylc('module_subtask_name', 'climatology_input') }}"""
+
+        [[[{{ MODULES | eumopps_cylc('module_scheduling', 'climatology_solve') }}]]]
+            graph = """{{ MODULES | eumopps_cylc('module_subtask_name', 'climatology_input') }} => {{ MODULES | eumopps_cylc('module_subtask_name', 'climatology_solve') }}"""
+
+        [[[{{ MODULES | eumopps_cylc('module_scheduling', 'large_scale_input') }}]]]
+            graph = """{{ MODULES | eumopps_cylc('module_subtask_name', 'climatology_solve') }} => {{ MODULES | eumopps_cylc('module_subtask_name', 'large_scale_input') }}"""
+
+        [[[{{ MODULES | eumopps_cylc('module_scheduling', 'large_scale_input') }}]]]
+            graph = """{{ MODULES | eumopps_cylc('module_subtask_name', 'large_scale_input') }} => {{ MODULES | eumopps_cylc('module_subtask_name', 'large_scale_solve') }}"""
+
+        [[[{{ MODULES | eumopps_cylc('module_scheduling', 'local_input_and_solve') }}]]]
+            graph = """{{ MODULES | eumopps_cylc('module_subtask_name', 'large_scale_solve') }} => {{ MODULES | eumopps_cylc('module_subtask_name', 'local_input_and_solve') }}"""
+
+        [[[{{ MODULES | eumopps_cylc('module_scheduling', 'output_grid') }}]]]
+            graph = """{{ MODULES | eumopps_cylc('module_subtask_name', 'local_input_and_solve') }} => {{ MODULES | eumopps_cylc('module_subtask_name', 'output_grid') }}"""
+
+[runtime]
+    [[root]]
+
+	[[[job submission]]]
+            method = lsf
+
+        [[[directives]]]
+            -q = short-serial
+            -n = 1
+	    -R = '"select[hname!=host142 && hname!=host291]"'
+            -c = 0:10
+
+	[[[job]]]
+	    execution retry delays = 3*PT15S
+
+    {{ MODULES | eumopps_cylc('module_subtask', 'climatology_input') }}
+    {{ MODULES | eumopps_cylc('module_subtask', 'climatology_solve') }}
+    {{ MODULES | eumopps_cylc('module_subtask', 'large_scale_input') }}
+    {{ MODULES | eumopps_cylc('module_subtask', 'large_scale_solve') }}
+    {{ MODULES | eumopps_cylc('module_subtask', 'local_input_and_solve') }}
+    {{ MODULES | eumopps_cylc('module_subtask', 'output_grid') }}

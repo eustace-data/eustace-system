@@ -1,0 +1,122 @@
+{
+    "python_class" : "eumopps.catalogue.catalogue.Catalogue",
+
+    "datasets" : [
+
+    
+    {
+        "python_class" : "eumopps.catalogue.dataset.CatalogueDataSet",
+        "name"  : "insitu_land",
+	"path"	: "/gws/nopw/j04/eustace/users/ybrugnara/D1.7/daily",
+	"subsets" : [
+	{
+	    "python_class" : "eumopps.catalogue.dataset.CatalogueDataSubset",
+	    "layout" : 
+	    {
+	        "python_class" : "eumopps.catalogue.storage.DataStorageFiles",
+		"patterns" : [ "eustace_stations_global_R001124_%Y_daily_temperature.nc" ]
+	    }	    
+	},
+	{
+	    "python_class" : "eumopps.catalogue.dataset.CatalogueDataSubset",
+	    "layout" : 
+	    {
+	        "python_class" : "eumopps.catalogue.storage.DataStorageFiles",
+		"patterns" : [ "eustace_stations_global_R001127_daily_status.nc" ]
+	    }	    
+	}
+	]
+    },
+
+    {
+        "python_class" : "eumopps.catalogue.dataset.CatalogueDataSet",
+        "name"  : "insitu_ocean",
+	"path"	: "/gws/nopw/j04/eustace/data/incoming/HadNMAT2/2m/analysis_data/",
+	"subsets" : [
+	{
+	    "python_class" : "eumopps.catalogue.dataset.CatalogueDataSubset",
+	    "layout" : 
+	    {
+	        "python_class" : "eumopps.catalogue.storage.DataStorageFiles",
+		"patterns" : [ "%Y%m.txt.gz" ]
+	    }	    
+	}
+	]
+    },
+
+    {
+        "python_class" : "eumopps.catalogue.dataset.CatalogueDataSet",
+        "name"  : "surfaceairmodel_ice",
+	"path"	: "/gws/nopw/j04/eustace/data/internal/D2.2/R001268/20180809/ice",
+	"subsets" : [
+	{
+	    "python_class" : "eumopps.catalogue.dataset.CatalogueDataSubset",
+	    "layout" : 
+	    {
+	        "python_class" : "eumopps.catalogue.storage.DataStorageFiles",
+		"patterns" : [ "%Y/", "tas_ice_eustace_0_%Y%m%d.nc" ]
+	    }	    
+	},
+	{
+	    "python_class" : "eumopps.catalogue.dataset.CatalogueDataSubset",
+	    "layout" : 
+	    {
+	        "python_class" : "eumopps.catalogue.storage.DataStorageFiles",
+		"patterns" : [ "%Y/", "ancillary_ice_eustace_0_%Y%m%d.nc" ]
+	    }	    
+	}
+	]
+    },
+
+    {
+        "python_class" : "eumopps.catalogue.dataset.CatalogueDataSet",
+        "name"  : "surfaceairmodel_land",
+	"path"	: "/gws/nopw/j04/eustace/data/internal/D2.2/R001268/20180809/land",
+	"subsets" : [
+	{
+	    "python_class" : "eumopps.catalogue.dataset.CatalogueDataSubset",
+	    "layout" : 
+	    {
+	        "python_class" : "eumopps.catalogue.storage.DataStorageFiles",
+		"patterns" : [ "%Y/", "tas_land_eustace_0_%Y%m%d.nc" ]
+	    }	    
+	},
+	{
+	    "python_class" : "eumopps.catalogue.dataset.CatalogueDataSubset",
+	    "layout" : 
+	    {
+	        "python_class" : "eumopps.catalogue.storage.DataStorageFiles",
+		"patterns" : [ "%Y/", "ancillary_land_eustace_0_%Y%m%d.nc" ]
+	    }	    
+	}
+	]
+    },
+
+
+    {
+        "python_class" : "eumopps.catalogue.dataset.CatalogueDataSet",
+        "name"  : "surfaceairmodel_ocean",
+	"path"	: "/gws/nopw/j04/eustace/data/internal/D2.2/R001268/20180809/ocean",
+	"subsets" : [
+	{
+	    "python_class" : "eumopps.catalogue.dataset.CatalogueDataSubset",
+	    "layout" : 
+	    {
+	        "python_class" : "eumopps.catalogue.storage.DataStorageFiles",
+		"patterns" : [ "%Y/", "tas_ocean_eustace_0_%Y%m%d.nc" ]
+	    }	    
+	},
+	{
+	    "python_class" : "eumopps.catalogue.dataset.CatalogueDataSubset",
+	    "layout" : 
+	    {
+	        "python_class" : "eumopps.catalogue.storage.DataStorageFiles",
+		"patterns" : [ "%Y/", "ancillary_ocean_eustace_0_%Y%m%d.nc" ]
+	    }	    
+	}
+	]
+    }
+
+    ]
+}
+

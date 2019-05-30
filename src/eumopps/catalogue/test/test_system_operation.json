@@ -1,0 +1,58 @@
+{ 
+  "python_class": "eumopps.catalogue.catalogue.Catalogue",
+
+  "operations": [
+    {
+      "python_class": "eumopps.catalogue.operation.Operation",
+
+      "step": {
+        "python_class": "eumopps.catalogue.step.StepDaily",
+        "start": "20170418000000",
+        "end": "20170422000000"
+      },
+
+      "newdatasets": [
+        {
+          "python_class": "eumopps.catalogue.dataset.CatalogueDataSet",
+          "name": "myresults",
+          "subsets" : [ 
+            {
+              "python_class": "eumopps.catalogue.dataset.CatalogueDataSubset",
+	      "layout":
+	      {
+	        "python_class": "eumopps.catalogue.storage.DataStorageFiles",
+	        "patterns": [ "example_%Y%m%d_result.txt" ]
+	      }
+            }
+          ]
+        }
+      ],
+
+      "runmodule": {
+
+        "python_function": "eumopps.catalogue.test.examplemodule.run",
+
+	"title": "My Results",
+
+	"time": {
+	  "python_class": "eumopps.catalogue.placeholder.StepTime"
+        },
+
+        "inputdaily": { 
+          "python_class": "eumopps.catalogue.placeholder.InputFile",
+          "datasetname": "dailydata"
+        },
+
+        "inputfixed": { 
+          "python_class": "eumopps.catalogue.placeholder.InputFile",
+          "datasetname": "fixeddata"
+        },
+
+        "output": { 
+          "python_class": "eumopps.catalogue.placeholder.OutputFile",
+          "datasetname": "myresults"
+        }
+      }
+    } 
+  ]
+}

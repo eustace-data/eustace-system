@@ -1,0 +1,151 @@
+{ 
+  "python_class": "eumopps.catalogue.catalogue.Catalogue",
+
+  "datasets": [
+
+    {
+      "python_class": "eumopps.catalogue.dataset.CatalogueDataSet",
+      "path": "/gws/nopw/j04/eustace/data/incoming/AASTI_v1_L3_solartime",
+      "name": "satellite_preprocessed_ice",
+
+      "subsets" : [ 
+
+        {
+          "python_class": "eumopps.catalogue.dataset.CatalogueDataSubset",
+	  "layout":
+	   {
+	    "python_class": "eumopps.catalogue.storage.DataStorageFiles",
+	    "patterns": [ "%Y/%m/", "%Y-%m-%d_sh.nc" ] 
+	   }
+        },
+
+        {
+          "python_class": "eumopps.catalogue.dataset.CatalogueDataSubset",
+	  "layout":
+	   {
+	    "python_class": "eumopps.catalogue.storage.DataStorageFiles",
+	    "patterns": [ "%Y/%m/", "%Y-%m-%d_nh.nc" ] 
+	   }
+        }
+
+      ]
+    },
+
+    {
+      "python_class": "eumopps.catalogue.dataset.CatalogueDataSet",
+      "path": "/gws/nopw/j04/eustace/data/internal/surfaceair_model_parameters/ice",
+      "name": "surfaceairmodel_parameters_ice",
+
+      "subsets" : [
+
+        {
+          "python_class": "eumopps.catalogue.dataset.CatalogueDataSubset",
+          "layout":
+           {
+            "python_class": "eumopps.catalogue.storage.DataStorageFiles",
+            "patterns": [ "m_values_sh_TskinSeason_MS9.mat" ]
+           }
+        },
+
+        {
+          "python_class": "eumopps.catalogue.dataset.CatalogueDataSubset",
+          "layout":
+           {
+            "python_class": "eumopps.catalogue.storage.DataStorageFiles",
+            "patterns": [ "m_values_nh_TskinSeason_MS9.mat" ]
+           }
+        }
+
+      ]
+    }
+  ], 
+
+  "operations": [
+    {
+
+      "name": "satstace_ice",
+      "python_class": "eumopps.catalogue.operation.Operation",
+
+      "step": {
+        "python_class": "eumopps.catalogue.step.StepDaily",
+        "start": "20010101000000",
+        "end": "20091231000000"
+      },
+
+      "newdatasets": [
+        {
+          "python_class": "eumopps.catalogue.dataset.CatalogueDataSet",
+          "name": "surfaceairmodel_ice",
+          "subsets" : [ 
+
+            {
+              "python_class": "eumopps.catalogue.dataset.CatalogueDataSubset",
+	      "layout":
+	      {
+	        "python_class": "eumopps.catalogue.storage.DataStorageFiles",
+	        "patterns": [ "ice/%Y/", "tas_ice_eustace_0_%Y%m%d.nc" ]
+	      }
+            },
+
+            {
+              "python_class": "eumopps.catalogue.dataset.CatalogueDataSubset",
+	      "layout":
+	      {
+	        "python_class": "eumopps.catalogue.storage.DataStorageFiles",
+	        "patterns": [ "ice/%Y/", "ancillary_ice_eustace_0_%Y%m%d.nc" ]
+	      }
+            }
+          ]
+        }
+      ],
+
+      "runmodule": {
+
+        "python_function": "eustace.surfaceairmodel.run_ice.run_day",
+
+	"catalogue_id": { "python_class": "eumopps.catalogue.operationparameters.OperationCatalogueID" },
+
+	"institution": "Met Office",
+
+        "output_main": { 
+          "python_class": "eumopps.catalogue.placeholder.OutputFile",
+          "datasetname": "surfaceairmodel_ice",
+	  "subsetindex": 0
+        },
+
+        "output_ancillary": { 
+          "python_class": "eumopps.catalogue.placeholder.OutputFile",
+          "datasetname": "surfaceairmodel_ice",
+	  "subsetindex": 1
+        },
+
+        "input_model_sh": { 
+          "python_class": "eumopps.catalogue.placeholder.InputFile",
+          "datasetname": "surfaceairmodel_parameters_ice",
+	  "subsetindex": 0
+        },
+
+        "input_model_nh": { 
+          "python_class": "eumopps.catalogue.placeholder.InputFile",
+          "datasetname": "surfaceairmodel_parameters_ice",
+	  "subsetindex": 1
+        },
+
+        "input_satellite_sh": { 
+          "python_class": "eumopps.catalogue.placeholder.InputFile",
+          "datasetname": "satellite_preprocessed_ice",
+	  "subsetindex": 0,
+	  "missing_data":"skip"
+        },
+
+        "input_satellite_nh": { 
+          "python_class": "eumopps.catalogue.placeholder.InputFile",
+          "datasetname": "satellite_preprocessed_ice",
+	  "subsetindex": 1,
+	  "missing_data":"skip"
+        }
+      }
+    } 
+  ]
+}
+

@@ -1,0 +1,87 @@
+{ 
+  "python_class": "eumopps.catalogue.catalogue.Catalogue",
+
+  "operations": [
+        {
+        "python_class": "eumopps.catalogue.operation.Operation",
+        "name": "input_summaries_create",
+        "step": {
+            "python_class": "eumopps.catalogue.step.StepDaily",
+            "start": "20170418000000",
+            "end": "20170422000000"
+        },
+
+        "newdatasets": [
+            {
+            "python_class": "eumopps.catalogue.dataset.CatalogueDataSet",
+            "name": "input_summaries",
+            "subsets" : [ 
+                {
+                "python_class": "eumopps.catalogue.dataset.CatalogueDataSubset",
+            "layout":
+            {
+                "python_class": "eumopps.catalogue.storage.DataStorageFiles",
+                "patterns": [ "example_%Y%m%d_inputs.json" ]
+            }
+                }
+            ]
+            }
+        ],
+
+        "runmodule": {
+
+        "python_function": "eustace.analysis.advanced_standard.fileio.optimization_inputs.input_summary",
+        "time": {
+        "python_class": "eumopps.catalogue.placeholder.StepTime"
+            },
+
+        "inputsources":  [ 
+                {
+                    "inputdaily":  { "python_class": "eumopps.catalogue.placeholder.InputFile", "datasetname": "dailydata"},
+                    "inputfixed":  { "python_class": "eumopps.catalogue.placeholder.InputFile", "datasetname": "fixeddata"}
+                }
+            ],
+
+        "output": { 
+          "python_class": "eumopps.catalogue.placeholder.OutputFile",
+          "datasetname": "input_summaries"
+        }
+      }
+    },
+    
+    {
+        "python_class": "eumopps.catalogue.operation.Operation",
+        "name": "input_summary_merge",
+        "step": { "python_class": "eumopps.catalogue.step.StepOnce" },
+
+        "newdatasets": [
+            {
+            "python_class": "eumopps.catalogue.dataset.CatalogueDataSet",
+            "name": "merged_input_summary",
+            "subsets" : [ 
+                {
+                "python_class": "eumopps.catalogue.dataset.CatalogueDataSubset",
+            "layout":
+            {
+                "python_class": "eumopps.catalogue.storage.DataStorageFiles",
+                "patterns": [ "merged_input_summary.json" ]
+            }
+                }
+            ]
+            }
+        ],
+
+        "runmodule": {
+
+        "python_function": "eustace.analysis.advanced_standard.fileio.optimization_inputs.merge_input_summaries",
+        
+        "summary_files":  { "python_class": "eumopps.catalogue.placeholder.InputFileList", "datasetname": "input_summaries"},
+
+        "output": { 
+          "python_class": "eumopps.catalogue.placeholder.OutputFile",
+          "datasetname": "merged_input_summary"
+        }
+      }
+    }
+  ]
+}

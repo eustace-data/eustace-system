@@ -1,0 +1,206 @@
+{
+    "python_class" : "eumopps.catalogue.catalogue.Catalogue",
+
+    "datasets" : [
+
+    {
+        "python_class" : "eumopps.catalogue.dataset.CatalogueDataSet",
+        "name"  : "locationlookup_insitu_land",
+		"path"	: "/work/scratch/eustace/rawbinary",
+		"subsets" : [
+		{
+			"python_class" : "eumopps.catalogue.dataset.CatalogueDataSubset",
+			"layout" : 
+			{
+				"python_class" : "eumopps.catalogue.storage.DataStorageFiles",
+			"patterns" : [ "locationlookup_insitu_land.bin" ]
+			}	    
+		}
+	]
+    },
+
+    {
+        "python_class" : "eumopps.catalogue.dataset.CatalogueDataSet",
+        "name"  : "locationlookup_satellite",
+		"path"	: "/work/scratch/eustace/rawbinary",
+		"subsets" : [
+		{
+			"python_class" : "eumopps.catalogue.dataset.CatalogueDataSubset",
+			"layout" : 
+			{
+				"python_class" : "eumopps.catalogue.storage.DataStorageFiles",
+			"patterns" : [ "locationlookup_satellite.bin" ]
+			}	    
+		}
+	]
+    },
+
+    {
+        "python_class" : "eumopps.catalogue.dataset.CatalogueDataSet",
+        "name"  : "rawbinary_insitu_land_Tmin_correlationranges",
+		"path"	: "/work/scratch/eustace/rawbinary",
+		"subsets" : [
+		{
+			"python_class" : "eumopps.catalogue.dataset.CatalogueDataSubset",
+			"layout" : 
+			{
+				"python_class" : "eumopps.catalogue.storage.DataStorageFiles",
+			"patterns" : [ "insitu_land_Tmin_localcorrelationranges.bin" ]
+			}	    
+		}
+		]
+    },
+
+    {
+        "python_class" : "eumopps.catalogue.dataset.CatalogueDataSet",
+        "name"  : "rawbinary_insitu_land_Tmax_correlationranges",
+		"path"	: "/work/scratch/eustace/rawbinary",
+		"subsets" : [
+		{
+			"python_class" : "eumopps.catalogue.dataset.CatalogueDataSubset",
+			"layout" : 
+			{
+				"python_class" : "eumopps.catalogue.storage.DataStorageFiles",
+			"patterns" : [ "insitu_land_Tmax_localcorrelationranges.bin" ]
+			}	    
+		}
+		]
+    },
+
+    {
+        "python_class" : "eumopps.catalogue.dataset.CatalogueDataSet",
+        "name"  : "rawbinary_insitu_ocean_Tmean_correlationranges",
+		"path"	: "/work/scratch/eustace/rawbinary",
+		"subsets" : [
+		{
+			"python_class" : "eumopps.catalogue.dataset.CatalogueDataSubset",
+			"layout" : 
+			{
+				"python_class" : "eumopps.catalogue.storage.DataStorageFiles",
+			"patterns" : [ "insitu_ocean_Tmean_localcorrelationranges.bin" ]
+			}	    
+		}
+		]
+    },
+
+    {
+        "python_class" : "eumopps.catalogue.dataset.CatalogueDataSet",
+        "name"  : "rawbinary_insitu_land_Tmin",
+		"path"	: "/work/scratch/eustace/rawbinary",
+		"subsets" : [
+		{
+			"python_class" : "eumopps.catalogue.dataset.CatalogueDataSubset",
+			"layout" : 
+			{
+				"python_class" : "eumopps.catalogue.storage.DataStorageFiles",
+			"patterns" : [ "insitu_land/%Y/", "insitu_land_Tmin_%Y%m%d.bin" ]
+			}	    
+		}
+		]
+    },
+
+    {
+        "python_class" : "eumopps.catalogue.dataset.CatalogueDataSet",
+        "name"  : "rawbinary_insitu_land_Tmax",
+		"path"	: "/work/scratch/eustace/rawbinary",
+		"subsets" : [
+		{
+			"python_class" : "eumopps.catalogue.dataset.CatalogueDataSubset",
+			"layout" : 
+			{
+				"python_class" : "eumopps.catalogue.storage.DataStorageFiles",
+			"patterns" : [ "insitu_land/%Y/", "insitu_land_Tmax_%Y%m%d.bin" ]
+			}	    
+		}
+		]
+    },
+
+    {
+        "python_class" : "eumopps.catalogue.dataset.CatalogueDataSet",
+        "name"  : "rawbinary_insitu_ocean_Tmean",
+		"path"	: "/work/scratch/eustace/rawbinary",
+		"subsets" : [
+		{
+			"python_class" : "eumopps.catalogue.dataset.CatalogueDataSubset",
+			"layout" : 
+			{
+				"python_class" : "eumopps.catalogue.storage.DataStorageFiles",
+			"patterns" : [ "insitu_ocean/%Y/", "insitu_ocean_Tmean_%Y%m%d.bin" ]
+			}	    
+		},
+		{
+			"python_class" : "eumopps.catalogue.dataset.CatalogueDataSubset",
+			"layout" : 
+			{
+				"python_class" : "eumopps.catalogue.storage.DataStorageFiles",
+			"patterns" : [ "insitu_ocean/%Y/", "insitu_ocean_Tmean_mobilelocations_%Y%m%d.bin" ]
+			}	    
+		}
+		]
+    }
+    ],
+
+	"operations" : [
+    {
+		"python_class" : "eumopps.catalogue.operation.Operation",
+		"name" : "diagnosticgrid",
+		"runmodule" : { 
+
+			"python_function" : "eustace.analysis.diagnostic_combine.run",
+
+			"outputfilename" : { "python_class" : "eumopps.catalogue.placeholder.OutputFile", "datasetname" : "diagnosticgrid" }, 
+
+			"processdate" : { "python_class" : "eumopps.catalogue.placeholder.StepTime" },
+
+			"inputs":  [ 
+
+				{
+					"python_class" : "eustace.analysis.diagnostic_combine.DiagnosticInput",
+					"sourcename" : "insitu_land",
+					"observable" : "Tmin",
+					"locationfilename" : { "python_class" : "eumopps.catalogue.placeholder.InputFile", "datasetname": "locationlookup_insitu_land" },
+					"correlationrangesfilename" : { "python_class" : "eumopps.catalogue.placeholder.InputFile", "datasetname" : "rawbinary_insitu_land_Tmin_correlationranges" },
+					"observationfilename" : { "python_class" : "eumopps.catalogue.placeholder.InputFile", "datasetname" : "rawbinary_insitu_land_Tmin", "missing_data" : "allowed" }
+				},
+
+				{
+					"python_class" : "eustace.analysis.diagnostic_combine.DiagnosticInput",
+					"sourcename" : "insitu_land",
+					"observable" : "Tmax",
+					"locationfilename" : { "python_class" : "eumopps.catalogue.placeholder.InputFile", "datasetname": "locationlookup_insitu_land" },
+					"correlationrangesfilename" : { "python_class" : "eumopps.catalogue.placeholder.InputFile", "datasetname" : "rawbinary_insitu_land_Tmax_correlationranges" },
+					"observationfilename" : { "python_class" : "eumopps.catalogue.placeholder.InputFile", "datasetname" : "rawbinary_insitu_land_Tmax", "missing_data" : "allowed" }
+				},
+
+				{
+					"python_class" : "eustace.analysis.diagnostic_combine.DiagnosticInput",
+					"sourcename" : "insitu_ocean",
+					"observable" : "Tmean",
+					"locationfilename" : { "python_class" : "eumopps.catalogue.placeholder.InputFile", "datasetname" : "rawbinary_insitu_ocean_Tmean", "subsetindex" : 1, "missing_data" : "allowed" },
+					"correlationrangesfilename" : { "python_class" : "eumopps.catalogue.placeholder.InputFile", "datasetname" : "rawbinary_insitu_ocean_Tmean_correlationranges" },
+					"observationfilename" : { "python_class" : "eumopps.catalogue.placeholder.InputFile", "datasetname" : "rawbinary_insitu_ocean_Tmean", "subsetindex" : 0, "missing_data" : "allowed" }
+				}
+			]
+		},
+
+		"step" : { "python_class" : "eumopps.catalogue.step.StepDaily", "start" : "20060101000000", "end" : "20061231000000" },
+		
+		"newdatasets": [
+		{
+			"python_class" : "eumopps.catalogue.dataset.CatalogueDataSet",
+			"name"  : "diagnosticgrid",
+			"subsets" : [
+			{	    
+				"python_class" : "eumopps.catalogue.dataset.CatalogueDataSubset",
+				"layout" : 
+				{
+					"python_class" : "eumopps.catalogue.storage.DataStorageFiles",
+					"patterns" : [ "diagnosticgrid/%Y/", "diagnosticgrid_%Y%m%d.nc" ]
+				}
+			}
+			]
+		}
+		]
+	}
+	]
+}

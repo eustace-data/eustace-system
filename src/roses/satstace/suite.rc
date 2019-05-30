@@ -1,0 +1,116 @@
+title = "EUSTACE run satstace from EUMOPPS catalogue"
+#jinja2 
+{% set CATALOGUE = '/gws/nopw/j04/eustace/data/internal/D2.2/R001335/20190111/catalogue.nc' %}
+{% set VERSION = '--allow_unversioned_code' %}
+{% set CHUNKSIZE = 5 %}
+{% set NUM_SATSTACE_ICE = ('python2.7 -m eumopps.catalogue.commandcount ' + CATALOGUE + ' satstace_ice') | runcommand | int %}
+{% set NUM_SATSTACE_LAND = ('python2.7 -m eumopps.catalogue.commandcount ' + CATALOGUE + ' satstace_land') | runcommand | int %}
+{% set NUM_SATSTACE_OCEAN_AATSR = ('python2.7 -m eumopps.catalogue.commandcount ' + CATALOGUE + ' satstace_ocean_AATSR') | runcommand | int %}
+{% set NUM_SATSTACE_OCEAN_ATSR2 = ('python2.7 -m eumopps.catalogue.commandcount ' + CATALOGUE + ' satstace_ocean_ATSR2') | runcommand | int %}
+{% set NUM_SATSTACE_OCEAN_MERGE = ('python2.7 -m eumopps.catalogue.commandcount ' + CATALOGUE + ' merge_ocean_outputs') | runcommand | int %}
+{% set MAX_CHUNKS = (([ NUM_SATSTACE_LAND, NUM_SATSTACE_ICE, NUM_SATSTACE_OCEAN_AATSR, NUM_SATSTACE_OCEAN_ATSR2, NUM_SATSTACE_OCEAN_MERGE ] | maximum ) / CHUNKSIZE) | roundup %}
+{% set MAX_SIMULTANEOUS = 30 %}
+
+[cylc]
+    [[parameters]]
+	subtask = 0..{{ CHUNKSIZE - 1 }}
+
+[scheduling]
+    cycling mode = integer 
+    max active cycle points = {{MAX_SIMULTANEOUS}}
+    initial cycle point = 0
+    final cycle point = {{MAX_CHUNKS}}
+    [[dependencies]]
+
+         [[[R/P1/{{(NUM_SATSTACE_LAND/CHUNKSIZE)|roundup}}]]]
+	    graph = """satstace_land_subtasks"""
+
+#        [[[R/P1/{{(NUM_SATSTACE_ICE/CHUNKSIZE)|roundup}}]]]
+#	    graph = """satstace_ice_subtasks"""
+
+#        [[[R/P1/{{(NUM_SATSTACE_OCEAN_AATSR/CHUNKSIZE)|roundup}}]]]
+#	    graph = """satstace_ocean_AATSR_subtasks""" 
+
+#	 [[[R/P1/{{(NUM_SATSTACE_OCEAN_ATSR2/CHUNKSIZE)|roundup}}]]]
+#	    graph = """satstace_ocean_ATSR2_subtasks"""
+	    
+#	 [[[R/P1/{{(NUM_SATSTACE_OCEAN_MERGE/CHUNKSIZE)|roundup}}]]]
+#	    graph = """merge_ocean_outputs_subtasks"""
+
+	    
+[runtime]
+    [[root]]
+	[[[job submission]]]
+            method = lsf
+            submission retry delays = 10*PT1M
+	    execution retry delays = 10*PT1M
+
+        [[[directives]]]
+            -q = short-serial
+            -n = 1
+	    -R = '"select[hname!=host142]"'
+
+    [[satstace_land_subtasks]]
+        [[[directives]]]
+            -c = 0:10
+        [[satstace_land<subtask>]]
+            inherit = satstace_land_subtasks
+	    script =  """
+	    COMMANDNUMBER=$(( 10#$CYLC_TASK_CYCLE_POINT * 10#{{CHUNKSIZE}} + 10#$CYLC_TASK_PARAM_subtask ))
+	    if [ $COMMANDNUMBER -lt {{NUM_SATSTACE_LAND}} ]; then
+	       module load idl
+	       python2.7 -m eumopps.catalogue.multiplecommandsrun {{CATALOGUE}} eustace.surfaceairmodel.run_land.run_multiple_days satstace_land 1 $COMMANDNUMBER {{VERSION}}
+	    fi
+	    """
+
+    [[satstace_ice_subtasks]]
+        [[[directives]]]
+            -c = 0:10
+	[[satstace_ice<subtask>]]
+            inherit = satstace_ice_subtasks
+	    script = """
+	    COMMANDNUMBER=$(( 10#$CYLC_TASK_CYCLE_POINT * 10#{{CHUNKSIZE}} + 10#$CYLC_TASK_PARAM_subtask ))
+	    if [ $COMMANDNUMBER -lt {{NUM_SATSTACE_ICE}} ]; then
+		python2.7 -m eumopps.catalogue.commandrun {{CATALOGUE}} satstace_ice $COMMANDNUMBER {{VERSION}}
+	    fi
+	    """
+    
+    [[satstace_ocean_AATSR_subtasks]]
+        [[[directives]]]
+            -c = 0:45
+	[[satstace_ocean_AATSR<subtask>]]
+            inherit = satstace_ocean_AATSR_subtasks
+	    script = """
+	    COMMANDNUMBER=$(( 10#$CYLC_TASK_CYCLE_POINT * 10#{{CHUNKSIZE}} + 10#$CYLC_TASK_PARAM_subtask ))
+	    if [ $COMMANDNUMBER -lt {{NUM_SATSTACE_OCEAN_AATSR}} ]; then
+		module load idl
+		python2.7 -m eumopps.catalogue.multiplecommandsrun {{CATALOGUE}} eustace.surfaceairmodel.run_ocean.run_multiple_days satstace_ocean_AATSR 1 $COMMANDNUMBER {{VERSION}}
+	    fi
+	    """
+	    
+    [[satstace_ocean_ATSR2_subtasks]]
+        [[[directives]]]
+            -c = 0:45
+	[[satstace_ocean_ATSR2<subtask>]]
+            inherit = satstace_ocean_ATSR2_subtasks
+	    script = """
+	    COMMANDNUMBER=$(( 10#$CYLC_TASK_CYCLE_POINT * 10#{{CHUNKSIZE}} + 10#$CYLC_TASK_PARAM_subtask ))
+	    if [ $COMMANDNUMBER -lt {{NUM_SATSTACE_OCEAN_ATSR2}} ]; then
+		module load idl
+		python2.7 -m eumopps.catalogue.multiplecommandsrun {{CATALOGUE}} eustace.surfaceairmodel.run_ocean.run_multiple_days satstace_ocean_ATSR2 1 $COMMANDNUMBER {{VERSION}}
+	    fi
+	    """
+
+	    
+    [[merge_ocean_outputs_subtasks]]
+        [[[directives]]]
+            -c = 0:45
+	[[merge_ocean_outputs<subtask>]]
+            inherit = merge_ocean_outputs_subtasks
+	    script = """
+	    COMMANDNUMBER=$(( 10#$CYLC_TASK_CYCLE_POINT * 10#{{CHUNKSIZE}} + 10#$CYLC_TASK_PARAM_subtask ))
+	    if [ $COMMANDNUMBER -lt {{NUM_SATSTACE_OCEAN_MERGE}} ]; then
+		module load idl
+		python2.7 -m eumopps.catalogue.multiplecommandsrun {{CATALOGUE}} eustace.outputformats.merge_multiple_outputs.merge_multiple_days_outputs  merge_ocean_outputs 1 $COMMANDNUMBER {{VERSION}}
+	    fi
+	    """

@@ -1,0 +1,53 @@
+{
+    "python_class" : "eumopps.catalogue.catalogue.Catalogue",
+
+    "datasets" : [
+    {
+        "python_class" : "eumopps.catalogue.dataset.CatalogueDataSet",
+        "name"  : "insitu_land",
+	"path"	: "/work/scratch/eustace/rawbinary",
+	"subsets" : [
+	{
+	    "python_class" : "eumopps.catalogue.dataset.CatalogueDataSubset",
+	    "layout" : 
+	    {
+	        "python_class" : "eumopps.catalogue.storage.DataStorageFiles",
+		"patterns" : [ "locationlookup_insitu_land.bin" ]
+	    }	    
+	},
+	{
+	    "python_class" : "eumopps.catalogue.dataset.CatalogueDataSubset",
+	    "layout" : 
+	    {
+	        "python_class" : "eumopps.catalogue.storage.DataStorageFiles",
+		"patterns" : [ "insitu_land_Tmin_localcorrelationranges.bin" ]
+	    }	    
+	},
+	{
+	    "python_class" : "eumopps.catalogue.dataset.CatalogueDataSubset",
+	    "layout" : 
+	    {
+	        "python_class" : "eumopps.catalogue.storage.DataStorageFiles",
+		"patterns" : [ "insitu_land_Tmax_localcorrelationranges.bin" ]
+	    }	    
+	},
+	{
+	    "python_class" : "eumopps.catalogue.dataset.CatalogueDataSubset",
+	    "layout" : 
+	    {
+	        "python_class" : "eumopps.catalogue.storage.DataStorageFiles",
+		"patterns" : [ "insitu_land/%Y/", "insitu_land_Tmin_%Y%m%d.bin" ]
+	    }	    
+	},
+	{
+	    "python_class" : "eumopps.catalogue.dataset.CatalogueDataSubset",
+	    "layout" : 
+	    {
+	        "python_class" : "eumopps.catalogue.storage.DataStorageFiles",
+		"patterns" : [ "insitu_land/%Y/", "insitu_land_Tmax_%Y%m%d.bin" ]
+	    }	    
+	}
+	]
+    }
+    ]
+}

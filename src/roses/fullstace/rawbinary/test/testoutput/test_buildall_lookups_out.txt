@@ -1,0 +1,70 @@
+ --- 
+Eumopps Options
+ --- 
+Eumopps options: --allow_unversioned_code
+ --- 
+Building lookups
+ --- 
+
+args list : False 
+
+Traceback (most recent call last):
+  File "/usr/lib/python2.7/runpy.py", line 162, in _run_module_as_main
+    "__main__", fname, loader, pkg_name)
+  File "/usr/lib/python2.7/runpy.py", line 72, in _run_code
+    exec code in run_globals
+  File "/home/users/jwinn/code2019/svn-eustace/system/src/eumopps/catalogue/commandrun.py", line 123, in <module>
+    main()
+  File "/home/users/jwinn/code2019/svn-eustace/system/src/eumopps/catalogue/commandrun.py", line 120, in main
+    justlist=args.justlist)
+  File "/home/users/jwinn/code2019/svn-eustace/system/src/eumopps/catalogue/commandrun.py", line 31, in commandrun
+    operation = CatalogueReaderNetCDF().load_operation(cataloguepathname, operationname)
+  File "/home/users/jwinn/code2019/svn-eustace/system/src/eumopps/catalogue/fileio/formatnetcdf.py", line 97, in load_operation
+    group = self.findoperation(ncfile, modulename)
+  File "/home/users/jwinn/code2019/svn-eustace/system/src/eumopps/catalogue/fileio/formatnetcdf.py", line 48, in findoperation
+    groups = self.findgroups(ncfile, OPERATIONS_LIST_NAME)
+  File "/home/users/jwinn/code2019/svn-eustace/system/src/eumopps/catalogue/fileio/formatnetcdf.py", line 40, in findgroups
+    list_count = ncfile.dimensions[listname].size
+KeyError: 'operations'
+
+args list : False 
+
+Traceback (most recent call last):
+  File "/usr/lib/python2.7/runpy.py", line 162, in _run_module_as_main
+    "__main__", fname, loader, pkg_name)
+  File "/usr/lib/python2.7/runpy.py", line 72, in _run_code
+    exec code in run_globals
+  File "/home/users/jwinn/code2019/svn-eustace/system/src/eumopps/catalogue/commandrun.py", line 123, in <module>
+    main()
+  File "/home/users/jwinn/code2019/svn-eustace/system/src/eumopps/catalogue/commandrun.py", line 120, in main
+    justlist=args.justlist)
+  File "/home/users/jwinn/code2019/svn-eustace/system/src/eumopps/catalogue/commandrun.py", line 31, in commandrun
+    operation = CatalogueReaderNetCDF().load_operation(cataloguepathname, operationname)
+  File "/home/users/jwinn/code2019/svn-eustace/system/src/eumopps/catalogue/fileio/formatnetcdf.py", line 97, in load_operation
+    group = self.findoperation(ncfile, modulename)
+  File "/home/users/jwinn/code2019/svn-eustace/system/src/eumopps/catalogue/fileio/formatnetcdf.py", line 48, in findoperation
+    groups = self.findgroups(ncfile, OPERATIONS_LIST_NAME)
+  File "/home/users/jwinn/code2019/svn-eustace/system/src/eumopps/catalogue/fileio/formatnetcdf.py", line 40, in findgroups
+    list_count = ncfile.dimensions[listname].size
+KeyError: 'operations'
+
+args list : False 
+
+Traceback (most recent call last):
+  File "/usr/lib/python2.7/runpy.py", line 162, in _run_module_as_main
+    "__main__", fname, loader, pkg_name)
+  File "/usr/lib/python2.7/runpy.py", line 72, in _run_code
+    exec code in run_globals
+  File "/home/users/jwinn/code2019/svn-eustace/system/src/eumopps/catalogue/commandrun.py", line 123, in <module>
+    main()
+  File "/home/users/jwinn/code2019/svn-eustace/system/src/eumopps/catalogue/commandrun.py", line 120, in main
+    justlist=args.justlist)
+  File "/home/users/jwinn/code2019/svn-eustace/system/src/eumopps/catalogue/commandrun.py", line 31, in commandrun
+    operation = CatalogueReaderNetCDF().load_operation(cataloguepathname, operationname)
+  File "/home/users/jwinn/code2019/svn-eustace/system/src/eumopps/catalogue/fileio/formatnetcdf.py", line 97, in load_operation
+    group = self.findoperation(ncfile, modulename)
+  File "/home/users/jwinn/code2019/svn-eustace/system/src/eumopps/catalogue/fileio/formatnetcdf.py", line 48, in findoperation
+    groups = self.findgroups(ncfile, OPERATIONS_LIST_NAME)
+  File "/home/users/jwinn/code2019/svn-eustace/system/src/eumopps/catalogue/fileio/formatnetcdf.py", line 40, in findgroups
+    list_count = ncfile.dimensions[listname].size
+KeyError: 'operations'

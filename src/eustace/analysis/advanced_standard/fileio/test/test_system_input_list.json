@@ -1,0 +1,119 @@
+{ 
+  "python_class": "eumopps.catalogue.catalogue.Catalogue",
+
+  "datasets": [
+
+    {
+      "python_class": "eumopps.catalogue.dataset.CatalogueDataSet",
+      "path": "data/twosources/sourceone",
+      "name": "sourceone",
+      "subsets" : [ 
+        {
+          "python_class": "eumopps.catalogue.dataset.CatalogueDataSubset",
+          "layout":
+          {
+            "python_class": "eumopps.catalogue.storage.DataStorageFiles",
+            "patterns": [ "sourceone_%Y%m%d.txt" ]
+          }
+        }
+      ]
+    },
+
+    {
+      "python_class": "eumopps.catalogue.dataset.CatalogueDataSet",
+      "path": "data/twosources/sourcetwo",
+      "name": "sourcetwo",
+      "subsets" : [ 
+        {
+          "python_class": "eumopps.catalogue.dataset.CatalogueDataSubset",
+          "layout":
+          {
+            "python_class": "eumopps.catalogue.storage.DataStorageFiles",
+            "patterns": [ "sourcetwo_%Y%m%d.txt" ]
+          }
+        }
+      ]
+    },
+    
+    {
+      "python_class": "eumopps.catalogue.dataset.CatalogueDataSet",
+      "path": "data/onefile",
+      "name": "fixeddata",
+      "subsets" : [ 
+        {
+          "python_class": "eumopps.catalogue.dataset.CatalogueDataSubset",
+          "layout":
+          {
+            "python_class": "eumopps.catalogue.storage.DataStorageFiles",
+            "patterns": [ "thisfile.txt" ]
+          }
+        }
+      ]
+    }
+
+  ],
+
+  "operations": [
+    {
+      "python_class": "eumopps.catalogue.operation.Operation",
+
+      "step": {
+        "python_class": "eumopps.catalogue.step.StepDaily",
+        "start": "20171210000000",
+        "end": "20171215000000"
+      },
+
+      "newdatasets": [
+        {
+          "python_class": "eumopps.catalogue.dataset.CatalogueDataSet",
+          "name": "myresults",
+          "subsets" : [ 
+            {
+              "python_class": "eumopps.catalogue.dataset.CatalogueDataSubset",
+              "layout":
+              {
+                "python_class": "eumopps.catalogue.storage.DataStorageFiles",
+                "patterns": [ "example_%Y%m%d_result.txt" ]
+              }
+            }
+          ]
+        }
+      ],
+
+      "runmodule": {
+
+        "python_function": "eumopps.catalogue.test.examplemodule_input_list.run",
+
+      	"title": "My Results",
+
+	      "time": {
+	        "python_class": "eumopps.catalogue.placeholder.StepTime"
+        },
+
+        "inputlist": [
+          { 
+            "python_class": "eumopps.catalogue.placeholder.InputFile",
+            "datasetname": "sourceone",
+            "missing_data": "allowed"
+          },
+          { 
+            "python_class": "eumopps.catalogue.placeholder.InputFile",
+            "datasetname": "sourcetwo",
+            "missing_data": "allowed"
+          }          
+        ],
+
+        "inputfixed": { 
+          "python_class": "eumopps.catalogue.placeholder.InputFile",
+          "datasetname": "fixeddata"
+        },
+
+        "output": { 
+          "python_class": "eumopps.catalogue.placeholder.OutputFile",
+          "datasetname": "myresults"
+        }
+      }
+    } 
+  ]
+
+}

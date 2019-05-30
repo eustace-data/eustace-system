@@ -1,0 +1,40 @@
+{ 
+  "python_class": "eumopps.catalogue.catalogue.Catalogue",
+
+  "datasets": [
+
+    {
+      "python_class": "eumopps.catalogue.dataset.CatalogueDataSet",
+      "path": "data/daily",
+      "name": "dailydata",
+      "subsets" : [ 
+        {
+          "python_class": "eumopps.catalogue.dataset.CatalogueDataSubset",
+	  "layout":
+	  {
+	    "python_class": "eumopps.catalogue.storage.DataStorageFiles",
+	    "patterns": [ "exampledaily_%Y%m%d.txt" ]
+	  }
+        }
+      ]
+    },
+    
+    {
+      "python_class": "eumopps.catalogue.dataset.CatalogueDataSet",
+      "path": "data/onefile",
+      "name": "fixeddata",
+      "subsets" : [ 
+        {
+          "python_class": "eumopps.catalogue.dataset.CatalogueDataSubset",
+	  "layout":
+	  {
+	    "python_class": "eumopps.catalogue.storage.DataStorageFiles",
+	    "patterns": [ "thisfile.txt" ]
+	  }
+        }
+      ]
+    }
+
+  ]
+
+}

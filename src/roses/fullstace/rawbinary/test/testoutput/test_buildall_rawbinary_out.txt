@@ -1,0 +1,11 @@
+ --- 
+Eumopps options: --allow_unversioned_code
+ --- 
+ --- 
+Building raw binaries - buildall_rawbinary
+ --- 
+.
+./test_runlsf_rawbinary.sh
+--allow_unversioned_code
+Eumopps options: --allow_unversioned_code
+module: preparedailyfixed_insitu_land_Tmin

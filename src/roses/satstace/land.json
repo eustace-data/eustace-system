@@ -1,0 +1,272 @@
+{ 
+  "python_class": "eumopps.catalogue.catalogue.Catalogue",
+
+  "datasets": [
+
+    {
+      "python_class": "eumopps.catalogue.dataset.CatalogueDataSet",
+      "path": "/gws/nopw/j04/eustace/data/internal/satgrid_lst_update/res_0.25",
+      "name": "satellite_preprocessed_land",
+
+      "subsets" : [ 
+
+        {
+          "python_class": "eumopps.catalogue.dataset.CatalogueDataSubset",
+	  "layout":
+	   {
+	    "python_class": "eumopps.catalogue.storage.DataStorageFiles",
+	    "patterns": [ "satgrid.day.%Y%m%d.nc" ] 
+	   }
+        },
+
+        {
+          "python_class": "eumopps.catalogue.dataset.CatalogueDataSubset",
+	  "layout":
+	   {
+	    "python_class": "eumopps.catalogue.storage.DataStorageFiles",
+	    "patterns": [ "satgrid.night.%Y%m%d.nc" ] 
+	   }
+        }
+
+      ]
+    },
+
+    {
+      "python_class": "eumopps.catalogue.dataset.CatalogueDataSet",
+      "path": "/gws/nopw/j04/eustace/users/ejn2/Output/L3/snow/global/res_0.25_0.25",
+      "name": "satellite_preprocessed_land_snow",
+
+      "subsets" : [ 
+
+        {
+          "python_class": "eumopps.catalogue.dataset.CatalogueDataSubset",
+	  "layout":
+	   {
+	    "python_class": "eumopps.catalogue.storage.DataStorageFiles",
+	    "patterns": [ "snow_global_0.25_0.25_%Y%m%d.nc" ] 
+	   }
+        } ]
+    },
+
+    {
+      "python_class": "eumopps.catalogue.dataset.CatalogueDataSet",
+      "path": "/gws/nopw/j04/eustace/data/incoming/DMI_Masks",
+      "name": "satellite_preprocessed_land_mask",
+
+      "subsets" : [ 
+
+        {
+          "python_class": "eumopps.catalogue.dataset.CatalogueDataSubset",
+	  "layout":
+	   {
+	    "python_class": "eumopps.catalogue.storage.DataStorageFiles",
+	    "patterns": [ "mask_land_water_icecap_nh.nc" ] 
+	   }
+        },
+
+        {
+          "python_class": "eumopps.catalogue.dataset.CatalogueDataSubset",
+	  "layout":
+	   {
+	    "python_class": "eumopps.catalogue.storage.DataStorageFiles",
+	    "patterns": [ "mask_land_water_icecap_fitosisaf_sh.nc" ] 
+	   }
+        }
+
+      ]
+    },
+
+    {
+      "python_class": "eumopps.catalogue.dataset.CatalogueDataSet",
+      "path": "/gws/nopw/j04/eustace/users/ejn2/Output/L3/DEM/with_unc/global",
+      "name": "satellite_preprocessed_land_DEM",
+
+      "subsets" : [ 
+
+        {
+          "python_class": "eumopps.catalogue.dataset.CatalogueDataSubset",
+	  "layout":
+	   {
+	    "python_class": "eumopps.catalogue.storage.DataStorageFiles",
+	    "patterns": [ "DEM_global_0.25_0.25.nc" ] 
+	   }
+        } ]
+    },
+
+    {
+      "python_class": "eumopps.catalogue.dataset.CatalogueDataSet",
+      "path": "/gws/nopw/j04/eustace/users/ejn2/Output/L3/FVC/with_unc/global/res_0.25_0.25",
+      "name": "satellite_preprocessed_land_fvc",
+
+      "subsets" : [ 
+
+        {
+          "python_class": "eumopps.catalogue.dataset.CatalogueDataSubset",
+	  "layout":
+	   {
+	    "python_class": "eumopps.catalogue.storage.DataStorageFiles",
+	    "patterns": [ "fvc_global_0.25_0.25_%Y%m%d.nc" ] 
+	   }
+        } ]
+    },
+
+    {
+      "python_class": "eumopps.catalogue.dataset.CatalogueDataSet",
+      "path": "/gws/nopw/j04/eustace/users/ejn2/Output/sat_lsat/May2017/",
+      "name": "surfaceairmodel_parameters_land",
+
+      "subsets" : [ 
+
+        {
+          "python_class": "eumopps.catalogue.dataset.CatalogueDataSubset",
+	  "layout":
+	   {
+	    "python_class": "eumopps.catalogue.storage.DataStorageFiles",
+	    "patterns": [ "MYG_model1_coefs.txt" ] 
+	   }
+        },
+
+        {
+          "python_class": "eumopps.catalogue.dataset.CatalogueDataSubset",
+	  "layout":
+	   {
+	    "python_class": "eumopps.catalogue.storage.DataStorageFiles",
+	    "patterns": [ "MYG_model2_coefs.txt" ] 
+	   }
+        },
+
+        {
+          "python_class": "eumopps.catalogue.dataset.CatalogueDataSubset",
+	  "layout":
+	   {
+	    "python_class": "eumopps.catalogue.storage.DataStorageFiles",
+	    "patterns": [ "MYG_model3_coefs.txt" ] 
+	   }
+        }
+
+      ]
+    }
+
+  ], 
+
+  "operations": [
+    {
+      "name": "satstace_land",
+      "python_class": "eumopps.catalogue.operation.Operation",
+
+      "step": {
+        "python_class": "eumopps.catalogue.step.StepDaily",
+        "start": "20020101000000",
+        "end": "20161231000000"
+      },
+
+      "newdatasets": [
+        {
+          "python_class": "eumopps.catalogue.dataset.CatalogueDataSet",
+          "name": "surfaceairmodel_land",
+          "subsets" : [ 
+
+            {
+              "python_class": "eumopps.catalogue.dataset.CatalogueDataSubset",
+	      "layout":
+	      {
+	        "python_class": "eumopps.catalogue.storage.DataStorageFiles",
+	        "patterns": [ "land/%Y/", "tas_land_eustace_0_%Y%m%d.nc" ]
+	      }
+            },
+
+            {
+              "python_class": "eumopps.catalogue.dataset.CatalogueDataSubset",
+	      "layout":
+	      {
+	        "python_class": "eumopps.catalogue.storage.DataStorageFiles",
+	        "patterns": [ "land/%Y/", "ancillary_land_eustace_0_%Y%m%d.nc" ]
+	      }
+            }
+          ]
+        }
+      ],
+
+      "runmodule": {
+
+        "python_function": "eustace.surfaceairmodel.run_land.return_daily_inputs",
+
+	"catalogue_id": { "python_class": "eumopps.catalogue.operationparameters.OperationCatalogueID" },
+
+	"institution": "Met Office",
+
+        "output_main": { 
+          "python_class": "eumopps.catalogue.placeholder.OutputFile",
+          "datasetname": "surfaceairmodel_land",
+	  "subsetindex": 0
+        },
+
+        "output_ancillary": { 
+          "python_class": "eumopps.catalogue.placeholder.OutputFile",
+          "datasetname": "surfaceairmodel_land",
+	  "subsetindex": 1
+        },
+	"input_satellite_land_fvc": "/gws/nopw/j04/eustace/users/ejn2/Output/L3/FVC/with_unc/global/res_0.25_0.25/",
+	"frac_sat_obs_threshold":0.2,
+	"sampling_threshold":3.0,
+        "input_model_1": { 
+          "python_class": "eumopps.catalogue.placeholder.InputFile",
+          "datasetname": "surfaceairmodel_parameters_land",
+	  "subsetindex": 0
+        },
+
+        "input_model_2": { 
+          "python_class": "eumopps.catalogue.placeholder.InputFile",
+          "datasetname": "surfaceairmodel_parameters_land",
+	  "subsetindex": 1
+        },
+
+        "input_model_3": { 
+          "python_class": "eumopps.catalogue.placeholder.InputFile",
+          "datasetname": "surfaceairmodel_parameters_land",
+	  "subsetindex": 2
+        },
+
+
+        "input_satellite_land_day": { 
+          "python_class": "eumopps.catalogue.placeholder.InputFile",
+          "datasetname": "satellite_preprocessed_land",
+	  "subsetindex": 0,
+	  "missing_data": "skip"
+        },
+
+        "input_satellite_land_night": { 
+          "python_class": "eumopps.catalogue.placeholder.InputFile",
+          "datasetname": "satellite_preprocessed_land",
+	  "subsetindex": 1,
+	  "missing_data": "skip"
+        },
+
+        "input_satellite_land_snow": { 
+          "python_class": "eumopps.catalogue.placeholder.InputFile",
+          "datasetname": "satellite_preprocessed_land_snow",
+	  "subsetindex": 0,
+	  "missing_data":"allowed"
+        },
+
+        "input_satellite_land_mask_north": { 
+          "python_class": "eumopps.catalogue.placeholder.InputFile",
+          "datasetname": "satellite_preprocessed_land_mask",
+	  "subsetindex": 0
+        },
+
+        "input_satellite_land_mask_south": { 
+          "python_class": "eumopps.catalogue.placeholder.InputFile",
+          "datasetname": "satellite_preprocessed_land_mask",
+	  "subsetindex": 1
+        },
+
+        "input_satellite_land_DEM": { 
+          "python_class": "eumopps.catalogue.placeholder.InputFile",
+          "datasetname": "satellite_preprocessed_land_DEM",
+	  "subsetindex": 0
+        }
+      }
+    } 
+  ]
+}

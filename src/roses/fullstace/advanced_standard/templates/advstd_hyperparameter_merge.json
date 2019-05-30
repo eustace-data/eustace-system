@@ -1,0 +1,39 @@
+{
+    "python_class":"eumopps.catalogue.operation.Operation",
+    "name":null,
+    "runmodule":
+        {
+            "python_function":"eustace.analysis.advanced_standard.examples.example_optimization.merge_local_parameterisations",
+            "full_resolution_level":7,
+            "neighbourhood_level": 3,
+            "hyperparameter_filenames":
+                {
+                    "python_class":"eumopps.catalogue.placeholder.InputFile",
+                    "datasetname":"local_region_hyperparameters"
+                },
+            "output_filename":
+                {
+                    "python_class":"eumopps.catalogue.placeholder.InputFile",
+                    "datasetname":"local_merged_hyperparameters"
+                }
+        },
+    "step":
+        {
+            "python_class":"eumopps.catalogue.step.StepOnce"
+        },
+    "newdatasets":[
+        {
+            "python_class":"eumopps.catalogue.dataset.CatalogueDataSet",
+            "name":"local_merged_hyperparameters",
+            "subsets":[
+                {
+                    "python_class":"eumopps.catalogue.dataset.CatalogueDataSubset",
+                    "layout":{
+                        "python_class":"eumopps.catalogue.storage.DataStorageFiles",
+                        "patterns":[ "local_hyperparameters/", "merged_hyperparameters.{full}.{sub}.npy" ]
+                    }
+                }
+            ]
+        }
+    ]
+}

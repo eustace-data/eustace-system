@@ -1,0 +1,14 @@
+EUSTACE (EU Surface Temperature for All Corners of Earth) will give publicly available daily estimates of surface air temperature since 1850 across the globe for the first time by combining surface and satellite data using novel statistical techniques.
+
+Why EUSTACE?
+
+Day-to-day variations in surface air temperature affect society in many ways:
+
+    Health and well-being: it can cause cold stress or heat stress
+    Food security: link between surface air temperature and crop growth and animal health
+    Energy: influence on the demand for heating or cooling, high temperature compromise the efficiency of solar panels
+    Commerce: it affects the sales of a large variety of products
+    Tourism: it affects the attractiveness of a region, risk of bush fires
+    Infrastructure: extremes affect the functioning of bridges, railways
+
+However, daily surface air temperature measurements are not available everywhere. Satellite data can be used to estimate temperatures at locations where no ground (or in situ) observations are available. To achieve this, we must develop an understanding of the relationships between traditional (land and marine) surface air temperature measurements and satellite measurements, i.e. land surface temperature, ice surface temperature, sea surface temperature and lake surface water temperature. These relationships can be derived either empirically, or with the help of physical understanding.

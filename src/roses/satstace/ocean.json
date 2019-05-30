@@ -1,0 +1,356 @@
+{ 
+  "python_class": "eumopps.catalogue.catalogue.Catalogue",
+
+  "datasets": [
+
+    {
+      "python_class": "eumopps.catalogue.dataset.CatalogueDataSet",
+      "path": "/gws/nopw/j04/eustace/data/incoming/UoR_sst/l3c/AATSR",
+      "name": "satellite_preprocessed_ocean_AATSR",
+
+      "subsets" : [ 
+
+        {
+          "python_class": "eumopps.catalogue.dataset.CatalogueDataSubset",
+	  "layout":
+	   {
+	    "python_class": "eumopps.catalogue.storage.DataStorageFiles",
+	    "patterns": [ "%Y/%m/", "%Y%m%d1200-ESACCI-L3C_GHRSST-AATSR-EXP1.2-v02.0-fv1.0.nc" ] 
+	   }
+        }
+      ]
+    },
+    {
+      "python_class": "eumopps.catalogue.dataset.CatalogueDataSet",
+      "path": "/gws/nopw/j04/eustace/data/incoming/UoR_sst/l3c/ATSR2",
+      "name": "satellite_preprocessed_ocean_ATSR2",
+
+      "subsets" : [ 
+
+        {
+          "python_class": "eumopps.catalogue.dataset.CatalogueDataSubset",
+	  "layout":
+	   {
+	    "python_class": "eumopps.catalogue.storage.DataStorageFiles",
+	    "patterns": [ "%Y/%m/", "%Y%m%d1200-ESACCI-L3C_GHRSST-ATSR2-EXP1.2-v02.0-fv1.0.nc" ] 
+	   }
+        }
+      ]
+    },
+    {
+      "python_class": "eumopps.catalogue.dataset.CatalogueDataSet",
+      "path": "/gws/nopw/j04/eustace/data/internal/surfaceair_model_parameters/ocean",
+      "name": "surfaceairmodel_parameters_ocean",
+
+      "subsets" : [
+
+        {
+          "python_class": "eumopps.catalogue.dataset.CatalogueDataSubset",
+          "layout":
+           {
+            "python_class": "eumopps.catalogue.storage.DataStorageFiles",
+            "patterns": [ "hires_AST_clim_parameters_v.5.0.dat" ]
+           }
+        },
+
+        {
+          "python_class": "eumopps.catalogue.dataset.CatalogueDataSubset",
+          "layout":
+           {
+            "python_class": "eumopps.catalogue.storage.DataStorageFiles",
+            "patterns": [ "hires_AST_clim_parameters_uncertainty_v.5.0.dat" ]
+           }
+        },
+
+        {
+          "python_class": "eumopps.catalogue.dataset.CatalogueDataSubset",
+          "layout":
+           {
+            "python_class": "eumopps.catalogue.storage.DataStorageFiles",
+            "patterns": [ "hires_AST_STDEV_clim_parameters_v.5.0.dat" ]
+           }
+        }
+
+      ]
+    }
+  ], 
+
+  "operations": [
+    {
+
+      "name": "satstace_ocean_AATSR",
+      "python_class": "eumopps.catalogue.operation.Operation",
+
+      "step": {
+        "python_class": "eumopps.catalogue.step.StepDaily",
+        "start": "20020101000000",
+        "end": "20121231000000"
+      },
+
+      "newdatasets": [
+        {
+          "python_class": "eumopps.catalogue.dataset.CatalogueDataSet",
+          "name": "surfaceairmodel_ocean_AATSR",
+          "subsets" : [ 
+
+            {
+              "python_class": "eumopps.catalogue.dataset.CatalogueDataSubset",
+	      "layout":
+	      {
+	        "python_class": "eumopps.catalogue.storage.DataStorageFiles",
+	        "patterns": [ "ocean/%Y/", "tas_ocean_eustace_0_AATSR_%Y%m%d.nc" ]
+	      }
+            },
+
+            {
+              "python_class": "eumopps.catalogue.dataset.CatalogueDataSubset",
+	      "layout":
+	      {
+	        "python_class": "eumopps.catalogue.storage.DataStorageFiles",
+	        "patterns": [ "ocean/%Y/", "ancillary_ocean_eustace_0_AATSR_%Y%m%d.nc" ]
+	      }
+            }
+          ]
+        }
+      ],
+
+      "runmodule": {
+
+        "python_function": "eustace.surfaceairmodel.run_ocean.return_daily_inputs",
+
+	"catalogue_id": { "python_class": "eumopps.catalogue.operationparameters.OperationCatalogueID" },
+
+	"institution": "Met Office",
+
+        "output_main": { 
+          "python_class": "eumopps.catalogue.placeholder.OutputFile",
+          "datasetname": "surfaceairmodel_ocean_AATSR",
+	  "subsetindex": 0
+        },
+
+        "output_ancillary": { 
+          "python_class": "eumopps.catalogue.placeholder.OutputFile",
+          "datasetname": "surfaceairmodel_ocean_AATSR",
+	  "subsetindex": 1
+        },
+
+        "input_model_parameters": { 
+          "python_class": "eumopps.catalogue.placeholder.InputFile",
+          "datasetname": "surfaceairmodel_parameters_ocean",
+	  "subsetindex": 0
+        },
+
+        "input_model_uncertainty": { 
+          "python_class": "eumopps.catalogue.placeholder.InputFile",
+          "datasetname": "surfaceairmodel_parameters_ocean",
+	  "subsetindex": 1
+        },
+
+        "input_model_stdev": { 
+          "python_class": "eumopps.catalogue.placeholder.InputFile",
+          "datasetname": "surfaceairmodel_parameters_ocean",
+	  "subsetindex": 2
+        },
+
+        "input_satellite_ocean": { 
+          "python_class": "eumopps.catalogue.placeholder.InputFile",
+          "datasetname": "satellite_preprocessed_ocean_AATSR",
+	  "subsetindex": 0,
+	  "missing_data": "skip"
+        }
+      }
+    },
+    {
+
+      "name": "satstace_ocean_ATSR2",
+      "python_class": "eumopps.catalogue.operation.Operation",
+
+      "step": {
+        "python_class": "eumopps.catalogue.step.StepDaily",
+        "start": "19950101000000",
+        "end": "20031231000000"
+      },
+
+      "newdatasets": [
+        {
+          "python_class": "eumopps.catalogue.dataset.CatalogueDataSet",
+          "name": "surfaceairmodel_ocean_ATSR2",
+          "subsets" : [ 
+
+            {
+              "python_class": "eumopps.catalogue.dataset.CatalogueDataSubset",
+	      "layout":
+	      {
+	        "python_class": "eumopps.catalogue.storage.DataStorageFiles",
+	        "patterns": [ "ocean/%Y/", "tas_ocean_eustace_0_ATSR2_%Y%m%d.nc" ]
+	      }
+            },
+
+            {
+              "python_class": "eumopps.catalogue.dataset.CatalogueDataSubset",
+	      "layout":
+	      {
+	        "python_class": "eumopps.catalogue.storage.DataStorageFiles",
+	        "patterns": [ "ocean/%Y/", "ancillary_ocean_eustace_0_ATSR2_%Y%m%d.nc" ]
+	      }
+            }
+          ]
+        }
+      ],
+
+      "runmodule": {
+
+        "python_function": "eustace.surfaceairmodel.run_ocean.return_daily_inputs",
+
+	"catalogue_id": { "python_class": "eumopps.catalogue.operationparameters.OperationCatalogueID" },
+
+	"institution": "Met Office",
+
+        "output_main": { 
+          "python_class": "eumopps.catalogue.placeholder.OutputFile",
+          "datasetname": "surfaceairmodel_ocean_ATSR2",
+	  "subsetindex": 0
+        },
+
+        "output_ancillary": { 
+          "python_class": "eumopps.catalogue.placeholder.OutputFile",
+          "datasetname": "surfaceairmodel_ocean_ATSR2",
+	  "subsetindex": 1
+        },
+
+        "input_model_parameters": { 
+          "python_class": "eumopps.catalogue.placeholder.InputFile",
+          "datasetname": "surfaceairmodel_parameters_ocean",
+	  "subsetindex": 0
+        },
+
+        "input_model_uncertainty": { 
+          "python_class": "eumopps.catalogue.placeholder.InputFile",
+          "datasetname": "surfaceairmodel_parameters_ocean",
+	  "subsetindex": 1
+        },
+
+        "input_model_stdev": { 
+          "python_class": "eumopps.catalogue.placeholder.InputFile",
+          "datasetname": "surfaceairmodel_parameters_ocean",
+	  "subsetindex": 2
+        },
+
+        "input_satellite_ocean": { 
+          "python_class": "eumopps.catalogue.placeholder.InputFile",
+          "datasetname": "satellite_preprocessed_ocean_ATSR2",
+	  "subsetindex": 0,
+	  "missing_data": "skip"
+        }
+      }
+    },
+    {
+
+      "name": "merge_ocean_outputs",
+      "python_class": "eumopps.catalogue.operation.Operation",
+
+      "step": {
+        "python_class": "eumopps.catalogue.step.StepDaily",
+        "start": "19950601000000",
+        "end": "20121231000000"
+      },
+
+      "newdatasets": [
+        {
+          "python_class": "eumopps.catalogue.dataset.CatalogueDataSet",
+          "name": "surfaceairmodel_ocean",
+          "subsets" : [ 
+
+            {
+              "python_class": "eumopps.catalogue.dataset.CatalogueDataSubset",
+	      "layout":
+	      {
+	        "python_class": "eumopps.catalogue.storage.DataStorageFiles",
+	        "patterns": [ "ocean/%Y/", "tas_ocean_eustace_0_%Y%m%d.nc" ]
+	      }
+            },
+
+            {
+              "python_class": "eumopps.catalogue.dataset.CatalogueDataSubset",
+	      "layout":
+	      {
+	        "python_class": "eumopps.catalogue.storage.DataStorageFiles",
+	        "patterns": [ "ocean/%Y/", "ancillary_ocean_eustace_0_%Y%m%d.nc" ]
+	      }
+            }
+          ]
+        }
+      ],
+
+      "runmodule": {
+
+        "python_function": "eustace.outputformats.merge_multiple_outputs.return_daily_outputs",
+
+	"catalogue_id": { "python_class": "eumopps.catalogue.operationparameters.OperationCatalogueID" },
+
+	"institution": "Met Office",
+
+        "output_main": { 
+          "python_class": "eumopps.catalogue.placeholder.OutputFile",
+          "datasetname": "surfaceairmodel_ocean",
+	  "subsetindex": 0
+        },
+
+        "output_ancillary": { 
+          "python_class": "eumopps.catalogue.placeholder.OutputFile",
+          "datasetname": "surfaceairmodel_ocean",
+	  "subsetindex": 1
+        },
+
+	"correlation_indexes": "[[0.],[1.],[0.],[0.],[0.],[0.],[0.],[0.],[0.],[0.]]",
+	"comment_prefix": "Marine surface air temperatures produced using University of Reading ",
+	"definitions_module": "eustace.outputformats.definitions",
+	"primary_fields_list":["TAS"],
+	"uncertainty_fields_list":["TASUNCERTAINTY"],
+	"ancillary_fields_list":["SURFACEAIRMODEL_ANCILLARY_OCEAN_TAS_UNCERTAINTY_RANDOM",
+			    "SURFACEAIRMODEL_ANCILLARY_OCEAN_TAS_UNCERTAINTY_LOCALLYCORRELATED",
+			    "SURFACEAIRMODEL_ANCILLARY_OCEAN_TAS_UNCERTAINTY_SYSTEMATIC",
+			    "SURFACEAIRMODEL_ANCILLARY_OCEAN_TAS_UNCERTAINTY_LOCALLYCORRELATED2",
+			    "SURFACEAIRMODEL_ANCILLARY_OCEAN_TAS_UNCERTAINTY_SYSTEMATIC2",
+			    "SURFACEAIRMODEL_ANCILLARY_OCEAN_TAS_UNCERTAINTY_PARAMETER0",
+			    "SURFACEAIRMODEL_ANCILLARY_OCEAN_TAS_UNCERTAINTY_PARAMETER1",
+			    "SURFACEAIRMODEL_ANCILLARY_OCEAN_TAS_UNCERTAINTY_PARAMETER2",
+			    "SURFACEAIRMODEL_ANCILLARY_OCEAN_TAS_UNCERTAINTY_PARAMETER3",
+			    "SURFACEAIRMODEL_ANCILLARY_OCEAN_TAS_UNCERTAINTY_PARAMETER4"],
+	"correlation_ranges": {
+				"python_class": "eustace.surfaceairmodel.correlation_ranges.CorrelationRanges",
+				"keys": ["unc_corr_tas","unc_corr2_tas"],
+				"length_values": [100,1000],
+				"time_values": [1,3],
+				"units":["km","day"] 
+			      },
+        "input_main": [{ 
+          "python_class": "eumopps.catalogue.placeholder.InputFile",
+          "datasetname": "surfaceairmodel_ocean_AATSR",
+	  "subsetindex": 0,
+	  "missing_data": "allowed"
+        },
+	{ 
+          "python_class": "eumopps.catalogue.placeholder.InputFile",
+          "datasetname": "surfaceairmodel_ocean_ATSR2",
+	  "subsetindex": 0,
+	  "missing_data": "allowed"
+        }],
+        "input_ancillary": [{ 
+          "python_class": "eumopps.catalogue.placeholder.InputFile",
+          "datasetname": "surfaceairmodel_ocean_AATSR",
+	  "subsetindex": 1,
+	  "missing_data": "allowed"
+        },
+	{ 
+          "python_class": "eumopps.catalogue.placeholder.InputFile",
+          "datasetname": "surfaceairmodel_ocean_ATSR2",
+	  "subsetindex": 1,
+	  "missing_data": "allowed"
+        }]
+
+      }
+    }
+  ]
+}
+
