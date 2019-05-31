@@ -1,9 +1,13 @@
 Working with the C++ API
 ========================
 
+The C++ API code largely relates to the associated "ambitious" project code, however the 
+code is also retained here for reference.
+
 The C++ API is built using the `CMake`_ tool which is part of the installed prequisites.
 The simplest way to build new programs which link to the API is to use CMake for those too,
 and cross-reference the EUSTACE library.
+
 
 A first example
 ---------------

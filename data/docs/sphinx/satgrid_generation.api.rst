@@ -1,5 +1,5 @@
-Satellite Gridding Generatione
-================================
+Satellite Gridding Generation
+=============================
 
 Satelite gridding overland
 --------------------------

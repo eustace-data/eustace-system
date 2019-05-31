@@ -36,6 +36,9 @@ It is structured as follows:
 +---------------------------------------+-----------------------------------------------------+
 | ``src/eustace/`` *module* ``/test``   | Tests corresponding to Python module                |
 +---------------------------------------+-----------------------------------------------------+
+| ``src/roses``                         | Primary directory for rose suite and cylc code      |
+|                                       | relating to Fullstace and Satstace components       |
++---------------------------------------+-----------------------------------------------------+
 
 In addition there is a ``src/eumopps`` directory structure containing EUMOPPS
 (the EUSTACE Met Office Processing and Provenance System).

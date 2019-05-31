@@ -21,4 +21,8 @@ Build the documentation
 
 ``sh eustace_docbuild.sh``
 
+A number of errors will be reported during documentation build.
+These are expected, and relate to the cholmod module that is not
+available in the current build.
+
 

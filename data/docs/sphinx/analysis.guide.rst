@@ -185,8 +185,8 @@ which will update the catalogue by adding information about the operations :ref:
 If you don't manage to produce a catalogue with the first command, then you should probably have a look at the changes you applied to the json descriptors.
 
 
-Running the analyis
--------------------
+Running the analysis
+--------------------
 
 Commands hierarchy
 ------------------

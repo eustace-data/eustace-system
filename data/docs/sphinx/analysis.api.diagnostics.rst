@@ -44,6 +44,10 @@ File input/output
   .. automodule:: eustace.analysis.fileio.observationsource_rawbinary
       :members: 
 
+  .. automodule:: eustace.analysis.fileio.observationsource_missing
+           :members:
+
+
 Raw binary
 ~~~~~~~~~~
 
@@ -63,6 +67,7 @@ Raw binary
       :members:
 
 Other
+
 ~~~~~
 
   .. automodule:: eustace.analysis.obscount

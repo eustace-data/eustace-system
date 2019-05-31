@@ -32,7 +32,7 @@ All source code must be kept in a version control system, and a ticketing system
 
 3. The `sphinx`_ documentation system should be run to generate updated documentation, read to verify that comments appear correctly, and comments revised if necessary.
 
-4. Once tests are sufficient and pass, the code should be committed to the code repository, and the logged with a cross-reference to the ticket.
+4. Once tests are sufficient and pass, the code should be committed to the code repository, and then logged with a cross-reference to the ticket.
 
 5. Comments should be placed on the ticket cross-referencing the repository version containing the changes.
 

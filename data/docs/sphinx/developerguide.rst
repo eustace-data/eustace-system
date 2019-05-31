@@ -10,4 +10,4 @@ Developer Guide
    cppanalysisinputs.rst
    satgrid_iris.guide.rst
    satstace.rst
-   
+   fullstace.rst   

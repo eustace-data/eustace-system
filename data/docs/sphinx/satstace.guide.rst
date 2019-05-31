@@ -16,7 +16,9 @@ Very few simple instructions have to be followed, as explained below:
 
    /work/scratch/${USERNAME}
 
-where :code:`${USERNAME}` has to be replaced by your own username [1]_ . If you are running the production of output, then you should create a folder in
+where :code:`${USERNAME}` has to be replaced by your own username [1]_ . 
+
+If you are running the production of output, then you should create a folder in
 
 .. code-block:: bash
 

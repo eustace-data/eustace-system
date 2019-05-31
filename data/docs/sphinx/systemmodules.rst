@@ -10,5 +10,7 @@ System Modules
    outputformats.rst
    parsedoc.rst
    preprocess.rst
+   postprocess.rst
+   timeutils.api.rst
    surfaceairmodel.rst
    analysis.rst
